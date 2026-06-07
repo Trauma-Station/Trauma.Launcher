@@ -7,7 +7,6 @@ obj/
 cmake-build*
 publish_test
 Dependencies
-SS14.Launcher/FodyWeavers.xsd
 
-!PublishFiles/Space Station 14 Launcher.app/Contents/Resources/bin/
+!PublishFiles/Trauma Station Launcher.app/Contents/Resources/bin/
 __pycache__

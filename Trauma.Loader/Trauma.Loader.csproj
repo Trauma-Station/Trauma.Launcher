@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../Launcher.props" />
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))">
+    <UseSystemSqlite>True</UseSystemSqlite>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(UseSystemSqlite)' == 'True'">
+    <DefineConstants>$(DefineConstants);USE_SYSTEM_SQLITE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Robust.LoaderApi\Robust.LoaderApi\Robust.LoaderApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- I'm not making a new shared project for a single enum. -->
+    <Compile Include="../Trauma.Launcher/Models/ContentManagement/ContentCompressionScheme.cs" />
+    <Compile Include="../Trauma.Launcher/Utility/ZStd.cs" />
+    <Compile Include="../Trauma.Launcher/Utility/Libc.cs" />
+    <Compile Include="../Trauma.Launcher/Utility/SqliteBlobStream.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" />
+    <PackageReference Include="SQLitePCLRaw.provider.sqlite3" Condition="'$(UseSystemSqlite)' == 'True'" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Condition="'$(UseSystemSqlite)' != 'True'" />
+    <PackageReference Include="NSec.Cryptography" />
+    <!-- Add libsodium to control version, SpaceWizards.Sodium's dependency is behind -->
+    <PackageReference Include="libsodium" />
+    <PackageReference Include="Robust.Natives" />
+    <PackageReference Include="Robust.Natives.Zstd" />
+    <PackageReference Include="SharpZstd.Interop" ExcludeAssets="native" />
+    <PackageReference Include="Microsoft.NET.ILLink.Tasks" />
+  </ItemGroup>
+
+</Project>

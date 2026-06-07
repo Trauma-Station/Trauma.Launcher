@@ -37,8 +37,8 @@
   soundfont-path ? "${soundfont-fluid}/share/soundfonts/FluidR3_GM2-2.sf2",
 }:
 let
-  version = "0.37.1";
-  pname = "space-station-14-launcher";
+  version = "0.1.0";
+  pname = "trauma-station-launcher";
 in
 buildDotnetModule rec {
   inherit pname;
@@ -48,8 +48,8 @@ buildDotnetModule rec {
 
   # A bit redundant but I don't trust this package to be maintained by anyone else.
   src = fetchFromGitHub {
-    owner = "space-wizards";
-    repo = "SS14.Launcher";
+    owner = "Trauma-Station";
+    repo = "Trauma.Launcher";
     tag = "v${version}";
     hash = "sha256-83eBAT+NuwwpC30Xc5bJEs++tTYlY3akMaizQgNHOsA=";
     fetchSubmodules = true;
@@ -59,8 +59,8 @@ buildDotnetModule rec {
   selfContainedBuild = false;
 
   projectFile = [
-    "SS14.Loader/SS14.Loader.csproj"
-    "SS14.Launcher/SS14.Launcher.csproj"
+    "Trauma.Loader/Trauma.Loader.csproj"
+    "Trauma.Launcher/Trauma.Launcher.csproj"
   ];
 
   nugetDeps = ./deps.json;
@@ -110,14 +110,14 @@ buildDotnetModule rec {
   # via https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html under ${parameter@operator}
   makeWrapperArgs = [ ''--set ROBUST_SOUNDFONT_OVERRIDE ${soundfont-path}'' ];
 
-  executables = [ "SS14.Launcher" ];
+  executables = [ "Trauma.Launcher" ];
 
   desktopItems = [
     (makeDesktopItem {
       name = pname;
       exec = meta.mainProgram;
       icon = pname;
-      desktopName = "Space Station 14 Launcher";
+      desktopName = "Trauma Station Launcher";
       comment = meta.description;
       categories = [ "Game" ];
       startupWMClass = meta.mainProgram;
@@ -125,18 +125,18 @@ buildDotnetModule rec {
   ];
 
   postInstall = ''
-    mkdir -p $out/lib/space-station-14-launcher/loader
-    cp -r SS14.Loader/bin/${buildType}/*/*/* $out/lib/space-station-14-launcher/loader/
+    mkdir -p $out/lib/trauma-station-launcher/loader
+    cp -r Trauma.Loader/bin/${buildType}/*/*/* $out/lib/trauma-station-launcher/loader/
 
-    icoFileToHiColorTheme SS14.Launcher/Assets/icon.ico space-station-14-launcher $out
+    icoFileToHiColorTheme Trauma.Launcher/Assets/icon.ico trauma-station-launcher $out
   '';
 
   meta = {
-    description = "Launcher for Space Station 14, a multiplayer game about paranoia and disaster";
-    homepage = "https://spacestation14.io";
-    license = lib.licenses.mit;
+    description = "Launcher for Trauma Station, a multiplayer game about paranoia and disaster";
+    homepage = "https://traumastation.com";
+    license = lib.licenses.gpl3Only;
     maintainers = [ ];
     platforms = [ "x86_64-linux" ];
-    mainProgram = "SS14.Launcher";
+    mainProgram = "Trauma.Launcher";
   };
 }

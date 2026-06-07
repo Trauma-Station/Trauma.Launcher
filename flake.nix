@@ -1,5 +1,5 @@
 {
-  description = "Flake providing a package for the Space Station 14 Launcher.";
+  description = "Flake providing a package for the Trauma Station Launcher.";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
@@ -15,33 +15,33 @@
 
       packages = forAllSystems (
         system: pkgs: {
-          default = self.packages.${system}.space-station-14-launcher;
-          space-station-14-launcher = pkgs.callPackage ./nix/package.nix { };
+          default = self.packages.${system}.trauma-station-launcher;
+          trauma-station-launcher = pkgs.callPackage ./nix/package.nix { };
         }
       );
 
       overlays = {
-        default = self.overlays.space-station-14-launcher;
-        space-station-14-launcher = final: prev: {
-          space-station-14-launcher =
-            self.packages.${prev.stdenv.hostPlatform.system}.space-station-14-launcher;
+        default = self.overlays.trauma-station-launcher;
+        trauma-station-launcher = final: prev: {
+          trauma-station-launcher =
+            self.packages.${prev.stdenv.hostPlatform.system}.trauma-station-launcher;
         };
       };
 
       apps = forAllSystems (
         system: pkgs:
         let
-          pkg = self.packages.${system}.space-station-14-launcher;
+          pkg = self.packages.${system}.trauma-station-launcher;
         in
         {
-          default = self.apps.${system}.space-station-14-launcher;
-          space-station-14-launcher = {
+          default = self.apps.${system}.trauma-station-launcher;
+          trauma-station-launcher = {
             type = "app";
             program = "${pkg}/bin/${pkg.meta.mainProgram}";
           };
           fetch-deps = {
             type = "app";
-            program = toString self.packages.${system}.space-station-14-launcher.passthru.fetch-deps;
+            program = toString self.packages.${system}.trauma-station-launcher.passthru.fetch-deps;
           };
         }
       );
