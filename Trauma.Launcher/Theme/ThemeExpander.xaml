@@ -4,7 +4,7 @@ Taken & modified from Avalonia's git repo.
 
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:utility="clr-namespace:Trauma.Launcher.Utility">
+        xmlns:utility="using:Trauma.Launcher.Utility">
 
   <Style Selector="Expander /template/ ToggleButton#PART_toggle">
     <Setter Property="Template">

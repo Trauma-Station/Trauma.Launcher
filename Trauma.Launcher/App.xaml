@@ -1,6 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Trauma.Launcher"
+             xmlns:local="using:Trauma.Launcher"
              Name="Trauma Station Launcher"
              x:Class="Trauma.Launcher.App">
   <Application.DataTemplates>

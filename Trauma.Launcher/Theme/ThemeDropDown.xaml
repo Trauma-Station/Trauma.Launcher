@@ -1,7 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:views="clr-namespace:Trauma.Launcher.Views">
+        xmlns:sys="using:System"
+        xmlns:views="using:Trauma.Launcher.Views">
 
   <Style Selector="views|DropDown">
     <Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}" />

@@ -1,6 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:loc="clr-namespace:Trauma.Launcher.Localization"
+        xmlns:loc="using:Trauma.Launcher.Localization"
         xmlns:views="using:Trauma.Launcher.Views"
         xmlns:mwt="using:Trauma.Launcher.Views.MainWindowTabs">
   <Style Selector="ItemsControl.ServerList > ContentPresenter:nth-child(2n)">
