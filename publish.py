@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import stat
 import subprocess
 import shutil
 import glob
@@ -109,8 +110,14 @@ def publish_linux(x64_only: bool):
         shutil.copytree(f"Trauma.Launcher/bin/Release/{TFM}/linux-arm64/publish", "bin/publish/Linux/bin_arm64", dirs_exist_ok=True)
         shutil.copytree(f"Trauma.Loader/bin/Release/{TFM}/linux-arm64/publish", "bin/publish/Linux/bin_arm64/loader", dirs_exist_ok=True)
 
-    shutil.copyfile("PublishFiles/Trauma.Launcher", "bin/publish/Linux/Trauma.Launcher")
-    shutil.copyfile("PublishFiles/Trauma Station.desktop", "bin/publish/Linux/Trauma Station.desktop")
+    launcher = "bin/publish/Linux/Trauma.Launcher"
+    desktop = "bin/publish/Linux/Trauma Station.desktop"
+    shutil.copyfile("PublishFiles/Trauma.Launcher", launcher)
+    shutil.copyfile("PublishFiles/Trauma Station.desktop", desktop)
+    st = os.stat(launcher)
+    os.chmod(launcher, st.st_mode | stat.S_IEXEC)
+    st = os.stat(desktop)
+    os.chmod(desktop, st.st_mode | stat.S_IEXEC)
 
     shutil.make_archive("Trauma.Launcher_Linux", "zip", "bin/publish/Linux")
 
