@@ -17,6 +17,7 @@
     <!-- Launcher -->
     <PackageVersion Include="Avalonia" Version="12.0.4"/>
     <PackageVersion Include="Avalonia.Desktop" Version="12.0.4"/>
+    <PackageVersion Include="Avalonia.Labs.Gif" Version="12.0.2"/>
     <PackageVersion Include="Avalonia.Themes.Simple" Version="12.0.4"/>
     <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.0"/>
     <PackageVersion Include="CodeHollow.FeedReader" Version="1.2.6"/>

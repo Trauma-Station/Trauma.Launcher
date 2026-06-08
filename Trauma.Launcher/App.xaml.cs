@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Labs.Gif;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -22,6 +23,7 @@ public sealed class App : Application
     {
         ["WindowIcon"] = new AssetDef("icon.ico", AssetType.WindowIcon),
         ["LogoLong"] = new AssetDef("logo-long.png", AssetType.Bitmap),
+        ["ServerBanner"] = new AssetDef("banner.gif", AssetType.Gif),
     };
 
     private readonly OverrideAssetsManager _overrideAssets;
@@ -54,9 +56,8 @@ public sealed class App : Application
     {
         foreach (var (name, (path, type)) in AssetDefs)
         {
-            using var dataStream = AssetLoader.Open(new Uri($"avares://Trauma.Launcher/Assets/{path}"));
-
-            var asset = LoadAsset(type, dataStream);
+            var uri = new Uri($"avares://Trauma.Launcher/Assets/{path}");
+            var asset = LoadAsset(type, uri);
 
             _baseAssets.Add(name, asset);
             Resources.Add(name, asset);
@@ -87,21 +88,24 @@ public sealed class App : Application
         }
     }
 
+    private static object LoadAsset(AssetType type, Uri uri)
+        => LoadAsset(type, AssetLoader.Open(uri));
+
     private static object LoadAsset(AssetType type, Stream data)
-    {
-        return type switch
+        => type switch
         {
             AssetType.Bitmap => new Bitmap(data),
+            AssetType.Gif => GifStreamSource.FromStream(data),
             AssetType.WindowIcon => new WindowIcon(data),
             _ => throw new ArgumentOutOfRangeException()
         };
-    }
 
     private sealed record AssetDef(string DefaultPath, AssetType Type);
 
     private enum AssetType
     {
         Bitmap,
+        Gif,
         WindowIcon
     }
 

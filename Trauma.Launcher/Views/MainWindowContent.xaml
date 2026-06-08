@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gif="using:Avalonia.Labs.Gif"
              xmlns:vm="using:Trauma.Launcher.ViewModels"
              xmlns:v="using:Trauma.Launcher.Views"
              xmlns:loc="using:Trauma.Launcher.Localization"
@@ -21,6 +22,7 @@
           <!-- Logo -->
           <Image DockPanel.Dock="Left" HorizontalAlignment="Left" Height="60" Margin="0, 0, 0, 8"
                  Source="{DynamicResource LogoLong}" />
+          <gif:GifImage Stretch="None" Source="{DynamicResource ServerBanner}"/>
           <!--<v:Logo DockPanel.Dock="Left" Height="60" HorizontalAlignment="Left" Margin="0, 8"></v:Logo>-->
           <Grid DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"
                 ColumnDefinitions="Auto, Auto" RowDefinitions="Auto, Auto" Margin="0, 0, 3, 0">
