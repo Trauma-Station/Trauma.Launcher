@@ -51,7 +51,7 @@ buildDotnetModule rec {
     owner = "Trauma-Station";
     repo = "Trauma.Launcher";
     tag = "v${version}";
-    hash = "sha256-83eBAT+NuwwpC30Xc5bJEs++tTYlY3akMaizQgNHOsA=";
+    hash = "sha256-GDfm/1mzUAeVc5Js+sosR0wC3xrKy21kMJCLd77eiMQ=";
     fetchSubmodules = true;
   };
 
@@ -108,7 +108,7 @@ buildDotnetModule rec {
   # ${soundfont-path} is escaped here:
   # https://github.com/NixOS/nixpkgs/blob/d29975d32b1dc7fe91d5cb275d20f8f8aba399ad/pkgs/build-support/setup-hooks/make-wrapper.sh#L126C35-L126C45
   # via https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html under ${parameter@operator}
-  makeWrapperArgs = [ ''--set ROBUST_SOUNDFONT_OVERRIDE ${soundfont-path}'' ];
+  makeWrapperArgs = [ "--set ROBUST_SOUNDFONT_OVERRIDE ${soundfont-path}" ];
 
   executables = [ "Trauma.Launcher" ];
 
