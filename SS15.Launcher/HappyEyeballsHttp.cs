@@ -21,7 +21,7 @@ public static class HappyEyeballsHttp
 #endif
 
     // .NET does not implement Happy Eyeballs at the time of writing.
-    // https://github.com/space-wizards/Trauma.Launcher/issues/38
+    // https://github.com/space-wizards/SS15.Launcher/issues/38
     // This is the workaround.
     //
     // What's Happy Eyeballs? It makes the launcher try both IPv6 and IPv4,

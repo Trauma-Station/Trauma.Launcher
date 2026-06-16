@@ -23,7 +23,7 @@ public static class IconsLoader
     {
         foreach (var (path, resource) in Icons)
         {
-            using var file = AssetLoader.Open(new Uri($"avares://Trauma.Launcher/Assets/{path}"));
+            using var file = AssetLoader.Open(new Uri($"avares://SS15.Launcher/Assets/{path}"));
             var bitmap = new Bitmap(file);
             app.Resources.Add(resource, bitmap);
         }

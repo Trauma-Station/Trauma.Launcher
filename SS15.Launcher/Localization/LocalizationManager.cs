@@ -134,11 +134,11 @@ public sealed class LocalizationManager
             AddLanguageFiles(bundle, culture.Parent);
 
         var count = 0;
-        string[] attemptNames = [$"avares://Trauma.Launcher/Assets/Locale/{culture.Name}"];
+        string[] attemptNames = [$"avares://SS15.Launcher/Assets/Locale/{culture.Name}"];
         // Weblate stores secondary language codes (like zh-Hans) with an UNDERSCORE.
         // WHY.
         if (culture.Name.Contains('-'))
-            attemptNames = [..attemptNames, $"avares://Trauma.Launcher/Assets/Locale/{culture.Name.Replace("-", "_")}"];
+            attemptNames = [..attemptNames, $"avares://SS15.Launcher/Assets/Locale/{culture.Name.Replace("-", "_")}"];
 
         foreach (var location in attemptNames)
         {

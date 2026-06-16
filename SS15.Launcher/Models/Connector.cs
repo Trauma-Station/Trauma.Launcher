@@ -723,14 +723,14 @@ public sealed partial class Connector : ReactiveObject
             basePath = Path.GetFullPath(Path.Combine(
                 LauncherPaths.DirLauncherInstall,
                 "..", "..", "..", "..",
-                "Trauma.Loader", "bin", buildConfiguration, "net10.0"));
+                "SS15SS15.Loader", "bin", buildConfiguration, "net10.0"));
         }
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
         {
             return new ProcessStartInfo
             {
-                FileName = Path.Combine(basePath, "Trauma.Loader")
+                FileName = Path.Combine(basePath, "SS15SS15.Loader")
             };
         }
 
@@ -738,7 +738,7 @@ public sealed partial class Connector : ReactiveObject
         {
             return new ProcessStartInfo
             {
-                FileName = Path.Combine(basePath, "Trauma.Loader.exe"),
+                FileName = Path.Combine(basePath, "SS15SS15.Loader.exe"),
             };
         }
 
@@ -746,7 +746,7 @@ public sealed partial class Connector : ReactiveObject
         {
             if (release)
             {
-                var appPath = Path.GetFullPath(Path.Combine(basePath, "Trauma Station.app"));
+                var appPath = Path.GetFullPath(Path.Combine(basePath, "Space Station 15.app"));
                 Log.Debug("Using app bundle: {appPath}", appPath);
 
                 Log.Debug("Clearing quarantine on loader.");
@@ -799,7 +799,7 @@ public sealed partial class Connector : ReactiveObject
             {
                 return new ProcessStartInfo
                 {
-                    FileName = Path.Combine(basePath, "Trauma.Loader"),
+                    FileName = Path.Combine(basePath, "SS15SS15.Loader"),
                 };
             }
         }

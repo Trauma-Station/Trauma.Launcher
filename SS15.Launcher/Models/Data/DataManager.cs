@@ -335,7 +335,7 @@ public sealed class DataManager : ReactiveObject
         connection.Open();
 
         var sw = Stopwatch.StartNew();
-        var success = Migrator.Migrate(connection, "Trauma.Launcher.Models.Data.Migrations");
+        var success = Migrator.Migrate(connection, "SS15.Launcher.Models.Data.Migrations");
 
         if (!success)
             throw new Exception("Migrations failed!");
@@ -556,18 +556,18 @@ public sealed class DataManager : ReactiveObject
         ));
     }
 
-    public T GetCVar<T>([ValueProvider("Trauma.Launcher.Models.Data.CVars")] CVarDef<T> cVar)
+    public T GetCVar<T>([ValueProvider("SS15.Launcher.Models.Data.CVars")] CVarDef<T> cVar)
     {
         var entry = (CVarEntry<T>)_configEntries[cVar.Name];
         return entry.Value;
     }
 
-    public ICVarEntry<T> GetCVarEntry<T>([ValueProvider("Trauma.Launcher.Models.Data.CVars")] CVarDef<T> cVar)
+    public ICVarEntry<T> GetCVarEntry<T>([ValueProvider("SS15.Launcher.Models.Data.CVars")] CVarDef<T> cVar)
     {
         return (CVarEntry<T>)_configEntries[cVar.Name];
     }
 
-    public void SetCVar<T>([ValueProvider("Trauma.Launcher.Models.Data.CVars")] CVarDef<T> cVar, T value)
+    public void SetCVar<T>([ValueProvider("SS15.Launcher.Models.Data.CVars")] CVarDef<T> cVar, T value)
     {
         var name = cVar.Name;
         var entry = (CVarEntry<T>)_configEntries[cVar.Name];

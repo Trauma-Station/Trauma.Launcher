@@ -3,6 +3,7 @@
 
   <PropertyGroup>
     <IsPackable>false</IsPackable>
+    <RootNamespace>Trauma.Launcher.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Trauma.Launcher/Trauma.Launcher.csproj"/>
+    <ProjectReference Include="..\SS15.Launcher\SS15.Launcher.csproj" />
   </ItemGroup>
 
 </Project>

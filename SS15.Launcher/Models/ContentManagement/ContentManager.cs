@@ -22,7 +22,7 @@ public sealed class ContentManager
         Log.Debug("Migrating content database...");
 
         var sw = Stopwatch.StartNew();
-        var success = Migrator.Migrate(con, "Trauma.Launcher.Models.ContentManagement.Migrations");
+        var success = Migrator.Migrate(con, "SS15.Launcher.Models.ContentManagement.Migrations");
         if (!success)
             throw new Exception("Migrations failed!");
 

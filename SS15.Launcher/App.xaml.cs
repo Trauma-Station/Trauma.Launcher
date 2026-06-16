@@ -56,7 +56,7 @@ public sealed class App : Application
     {
         foreach (var (name, (path, type)) in AssetDefs)
         {
-            var uri = new Uri($"avares://Trauma.Launcher/Assets/{path}");
+            var uri = new Uri($"avares://SS15.Launcher/Assets/{path}");
             var asset = LoadAsset(type, uri);
 
             _baseAssets.Add(name, asset);

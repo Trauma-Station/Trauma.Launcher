@@ -18,6 +18,7 @@
 
     <!-- work around https://github.com/dotnet/runtime/issues/122079 -->
     <EnableSourceLink>false</EnableSourceLink>
+    <RootNamespace>Trauma.Launcher.Bootstrap</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

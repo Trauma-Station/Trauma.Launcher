@@ -5,6 +5,7 @@
     <OutputType>WinExe</OutputType>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>Trauma.Loader</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))">
@@ -20,10 +21,18 @@
 
   <ItemGroup>
     <!-- I'm not making a new shared project for a single enum. -->
-    <Compile Include="../Trauma.Launcher/Models/ContentManagement/ContentCompressionScheme.cs" />
-    <Compile Include="../Trauma.Launcher/Utility/ZStd.cs" />
-    <Compile Include="../Trauma.Launcher/Utility/Libc.cs" />
-    <Compile Include="../Trauma.Launcher/Utility/SqliteBlobStream.cs" />
+    <Compile Include="..\SS15.Launcher\Models\ContentManagement\ContentCompressionScheme.cs">
+      <Link>ContentCompressionScheme.cs</Link>
+    </Compile>
+    <Compile Include="..\SS15.Launcher\Utility\Libc.cs">
+      <Link>Libc.cs</Link>
+    </Compile>
+    <Compile Include="..\SS15.Launcher\Utility\SqliteBlobStream.cs">
+      <Link>SqliteBlobStream.cs</Link>
+    </Compile>
+    <Compile Include="..\SS15.Launcher\Utility\ZStd.cs">
+      <Link>ZStd.cs</Link>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

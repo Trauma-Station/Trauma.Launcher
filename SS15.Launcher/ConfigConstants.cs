@@ -20,7 +20,7 @@ public static class ConfigConstants
     // Check the command queue this often.
     public static readonly TimeSpan CommandQueueCheckInterval = TimeSpan.FromSeconds(1);
 
-    public const string LauncherCommandsNamedPipeName = "Trauma.Launcher.CommandPipe";
+    public const string LauncherCommandsNamedPipeName = "SS15.Launcher.CommandPipe";
     // Amount of time to wait before the launcher decides to ignore named pipes entirely to keep the rest of the launcher functional.
     public const int LauncherCommandsNamedPipeTimeout = 150;
     // Amount of time to wait to let a redialling client properly die
@@ -37,7 +37,7 @@ public static class ConfigConstants
     ];
     public const string DiscordUrl = "https://discord.traumastation.com/";
     public const string WebsiteUrl = "https://wiki.traumastation.com";
-    public const string DownloadUrl = "https://github.com/Trauma-Station/Trauma.Launcher/releases";
+    public const string DownloadUrl = "https://github.com/Trauma-Station/SS15.Launcher/releases";
     public const string NewsFeedUrl = "https://news.traumastation.com/index.xml";
 
     private static readonly Dictionary<string, UrlFallbackSet> EngineBaseUrls = new()

@@ -239,7 +239,7 @@ internal static class Program
             .With(new FontManagerOptions
             {
                 // Necessary workaround for #84 on Linux
-                DefaultFamilyName = "avares://Trauma.Launcher/Assets/Fonts/noto_sans/*.ttf#Noto Sans"
+                DefaultFamilyName = "avares://SS15.Launcher/Assets/Fonts/noto_sans/*.ttf#Noto Sans"
             })
             .UseReactiveUI(_ => {})
             .RegisterReactiveUIViewsFromEntryAssembly();

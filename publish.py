@@ -131,7 +131,7 @@ def publish_osx():
 
     res_root = "bin/publish/macOS/Trauma Station Launcher.app/Contents/Resources"
 
-    loader_res_root = f"{res_root}/Trauma Station.app/Contents/Resources"
+    loader_res_root = f"{res_root}/Space Station 15.app/Contents/Resources"
 
     for arch in ["x64", "arm64"]:
         full_arch_name = "x86_64" if arch == "x64" else arch

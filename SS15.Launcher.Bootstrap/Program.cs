@@ -27,7 +27,7 @@ namespace Trauma.Launcher.Bootstrap
             Environment.SetEnvironmentVariable("DOTNET_ROOT", dotnetDir);
             if (Array.IndexOf(args, "--debug") == -1)
             {
-                Process.Start(new ProcessStartInfo(Path.Combine(exeDir, "Trauma.Launcher.exe")));
+                Process.Start(new ProcessStartInfo(Path.Combine(exeDir, "SS15.Launcher.exe")));
             }
             else
             {
@@ -37,7 +37,7 @@ namespace Trauma.Launcher.Bootstrap
 
                 var process = Process.Start(
                     Path.Combine(dotnetDir, "dotnet.exe"),
-                    [Path.Combine(exeDir, "Trauma.Launcher.dll")]);
+                    [Path.Combine(exeDir, "SS15.Launcher.dll")]);
 
                 process.WaitForExit();
                 Console.WriteLine("Press enter to exit");

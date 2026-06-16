@@ -40,7 +40,7 @@ public sealed class OverrideAssetsManager
         Log.Debug("Migrating override assets database...");
 
         var sw = Stopwatch.StartNew();
-        var success = Migrator.Migrate(con, "Trauma.Launcher.Models.OverrideAssets.Migrations");
+        var success = Migrator.Migrate(con, "SS15.Launcher.Models.OverrideAssets.Migrations");
         if (!success)
             throw new Exception("Migration failed!");
 

@@ -12,6 +12,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>CA1416</NoWarn>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <RootNamespace>Trauma.Launcher</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))">
     <UseSystemSqlite>True</UseSystemSqlite>

@@ -29,7 +29,7 @@ internal class Program
         var prefix = "";
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            prefix = "Trauma Station.app/Contents/Resources/";
+            prefix = "Space Station 15.app/Contents/Resources/";
         }
 
         _fileApi = new ZipFileApi(zipArchive, prefix);
@@ -157,7 +157,7 @@ internal class Program
     {
         if (args.Length < 3)
         {
-            Console.WriteLine("Usage: Trauma.Loader <robustPath> <signature> <public key> [engineArg [engineArg...]]");
+            Console.WriteLine("Usage: SS15.Loader <robustPath> <signature> <public key> [engineArg [engineArg...]]");
             return 1;
         }
 

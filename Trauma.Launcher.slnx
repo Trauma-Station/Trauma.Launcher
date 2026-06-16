@@ -25,8 +25,8 @@
     <File Path=".github/workflows/publish-release.yml" />
   </Folder>
   <Project Path="Robust.LoaderApi/Robust.LoaderApi/Robust.LoaderApi.csproj" />
-  <Project Path="Trauma.Launcher.Bootstrap/Trauma.Launcher.Bootstrap.csproj" />
-  <Project Path="Trauma.Launcher.Tests/Trauma.Launcher.Tests.csproj" />
-  <Project Path="Trauma.Launcher/Trauma.Launcher.csproj" />
-  <Project Path="Trauma.Loader/Trauma.Loader.csproj" />
+  <Project Path="SS15.Launcher.Bootstrap/SS15.Launcher.Bootstrap.csproj" />
+  <Project Path="SS15.Launcher.Tests/SS15.Launcher.Tests.csproj" />
+  <Project Path="SS15.Launcher/SS15.Launcher.csproj" />
+  <Project Path="SS15.Loader/SS15.Loader.csproj" />
 </Solution>
