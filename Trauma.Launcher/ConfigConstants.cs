@@ -42,7 +42,7 @@ public static class ConfigConstants
 
     private static readonly Dictionary<string, UrlFallbackSet> EngineBaseUrls = new()
     {
-        {"RobustToolbox", new([
+        {"OldToolbox", new([
             "https://robust-builds.cdn.spacestation14.com/",
             "https://robust-builds.fallback.cdn.spacestation14.com/"
         ])},
@@ -56,9 +56,9 @@ public static class ConfigConstants
     /// </summary>
     public static IEnumerable<string> BuiltinEngines => EngineBaseUrls.Keys;
     /// <summary>
-    /// Engine to assume is used if one is not specified.
+    /// Engine to assume is being used if one is not specified.
     /// </summary>
-    public const string DefaultEngine = "RobustToolbox";
+    public const string DefaultEngine = "OldToolbox";
 
     private static readonly UrlFallbackSet LauncherDataBaseUrl = new([
         "https://launcher.cdn.traumastation.com/"
