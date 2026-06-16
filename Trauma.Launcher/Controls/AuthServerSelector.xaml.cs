@@ -42,6 +42,7 @@ public sealed partial class AuthServerSelector : UserControl
                 Content = server.Name,
                 IsChecked = server == Server
             };
+            ToolTip.SetTip(button, server.AuthUrl);
             button.IsCheckedChanged += (_, _) =>
             {
                 if (button.IsChecked == true)
