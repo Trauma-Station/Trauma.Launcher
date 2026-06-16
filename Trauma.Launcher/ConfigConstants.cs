@@ -5,7 +5,7 @@ namespace Trauma.Launcher;
 
 public static class ConfigConstants
 {
-    public const string CurrentLauncherVersion = "trauma-0.4";
+    public const string CurrentLauncherVersion = "trauma-0.5";
     public static readonly bool DoVersionCheck = true;
 
     // Refresh login tokens if they're within <this much> of expiry.
@@ -48,6 +48,9 @@ public static class ConfigConstants
         ])},
         {"QuietToolbox", new([
             "https://engine.cdn.traumastation.com/"
+        ])},
+        {"RobustToolbox", new([
+            "https://robust-builds.playss14.com/"
         ])}
     };
 
