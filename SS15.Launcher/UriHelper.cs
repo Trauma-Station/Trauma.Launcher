@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 /// <summary>
 ///     Helpers for managing SS14 URIs like <c>ss14://</c>.

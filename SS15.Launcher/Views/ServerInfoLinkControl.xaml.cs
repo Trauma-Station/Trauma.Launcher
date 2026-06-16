@@ -1,9 +1,9 @@
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Serilog;
-using Trauma.Launcher.Models;
+using SS15.Launcher.Models;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public sealed partial class ServerInfoLinkControl : UserControl
 {

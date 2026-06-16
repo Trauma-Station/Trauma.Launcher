@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reactive.Linq;
 using Avalonia.Input;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public partial class DirectConnectDialog : Window
 {

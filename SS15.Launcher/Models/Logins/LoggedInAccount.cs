@@ -1,6 +1,6 @@
-using Trauma.Launcher.Models.Data;
+using SS15.Launcher.Models.Data;
 
-namespace Trauma.Launcher.Models.Logins;
+namespace SS15.Launcher.Models.Logins;
 
 // TODO: make this even more abstract to support pubkey auth
 public abstract class LoggedInAccount : ReactiveObject

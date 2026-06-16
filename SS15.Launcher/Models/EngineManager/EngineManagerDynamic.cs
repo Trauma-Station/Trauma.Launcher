@@ -10,10 +10,10 @@ using Microsoft.Data.Sqlite;
 using NSec.Cryptography;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Models.EngineManager;
+namespace SS15.Launcher.Models.EngineManager;
 
 /// <summary>
 ///     Downloads engine versions from the website.

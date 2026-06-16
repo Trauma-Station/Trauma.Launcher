@@ -4,10 +4,10 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Trauma.Launcher.Models;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Api;
+namespace SS15.Launcher.Api;
 
 public sealed class HubApi
 {

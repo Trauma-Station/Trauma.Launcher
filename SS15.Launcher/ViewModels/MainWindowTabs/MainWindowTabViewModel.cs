@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.ViewModels.MainWindowTabs;
+namespace SS15.Launcher.ViewModels.MainWindowTabs;
 
 public abstract class MainWindowTabViewModel : ViewModelBase
 {

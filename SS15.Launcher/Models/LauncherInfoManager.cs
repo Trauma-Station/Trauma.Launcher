@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Serilog;
 
-namespace Trauma.Launcher.Models;
+namespace SS15.Launcher.Models;
 
 /// <summary>
 /// Fetches and caches information from <see cref="ConfigConstants.UrlLauncherInfo"/>.

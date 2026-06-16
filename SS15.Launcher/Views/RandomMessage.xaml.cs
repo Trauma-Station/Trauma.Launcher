@@ -1,8 +1,8 @@
 using Splat;
-using Trauma.Launcher.Models;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public sealed partial class RandomMessage : UserControl
 {

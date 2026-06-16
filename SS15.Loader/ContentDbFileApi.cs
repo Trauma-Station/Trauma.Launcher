@@ -11,12 +11,12 @@ using Microsoft.Data.Sqlite;
 using Robust.LoaderApi;
 using SharpZstd.Interop;
 using SQLitePCL;
-using Trauma.Launcher.Models.ContentManagement;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.ContentManagement;
+using SS15.Launcher.Utility;
 using static SQLitePCL.raw;
 using static SharpZstd.Interop.Zstd;
 
-namespace Trauma.Loader;
+namespace SS15.Loader;
 
 internal sealed class ContentDbFileApi : IFileApi, IDisposable
 {

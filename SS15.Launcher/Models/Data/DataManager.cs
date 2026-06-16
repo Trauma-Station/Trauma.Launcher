@@ -12,9 +12,9 @@ using JetBrains.Annotations;
 using Microsoft.Data.Sqlite;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Serilog;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Models.Data;
+namespace SS15.Launcher.Models.Data;
 
 /// <summary>
 /// A CVar entry in the <see cref="DataManager"/>. This is a separate object to allow data binding easily.

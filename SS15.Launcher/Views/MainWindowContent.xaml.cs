@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public sealed partial class MainWindowContent : UserControl
 {

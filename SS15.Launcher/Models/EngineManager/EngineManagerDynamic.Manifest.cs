@@ -4,9 +4,9 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using Serilog;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Models.EngineManager;
+namespace SS15.Launcher.Models.EngineManager;
 
 public sealed partial class EngineManagerDynamic
 {

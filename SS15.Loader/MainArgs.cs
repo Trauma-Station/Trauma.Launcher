@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Robust.LoaderApi;
 
-namespace Trauma.Loader;
+namespace SS15.Loader;
 
 internal sealed class MainArgs : IMainArgs
 {

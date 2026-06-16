@@ -5,12 +5,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Utility;
-using Trauma.Launcher.Api;
-using Trauma.Launcher.Models.Data;
-using static Trauma.Launcher.Api.HubApi;
+using SS15.Launcher.Utility;
+using SS15.Launcher.Api;
+using SS15.Launcher.Models.Data;
+using static SS15.Launcher.Api.HubApi;
 
-namespace Trauma.Launcher.Models.ServerStatus;
+namespace SS15.Launcher.Models.ServerStatus;
 
 /// <summary>
 ///     Caches the Hub's server list.

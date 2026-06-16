@@ -5,7 +5,7 @@
     <OutputType>WinExe</OutputType>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <RootNamespace>Trauma.Loader</RootNamespace>
+    <RootNamespace>SS15.Loader</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))">

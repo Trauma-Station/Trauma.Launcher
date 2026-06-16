@@ -12,7 +12,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>CA1416</NoWarn>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <RootNamespace>Trauma.Launcher</RootNamespace>
+    <RootNamespace>SS15.Launcher</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))">
     <UseSystemSqlite>True</UseSystemSqlite>
@@ -87,7 +87,7 @@
     <EmbeddedResource Include="Models\OverrideAssets\Migrations\*.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RobustLinkRoots Include="Trauma.Launcher" />
+    <RobustLinkRoots Include="SS15.Launcher" />
     <RobustLinkAssemblies Include="TerraFX.Interop.Windows" />
   </ItemGroup>
   <ItemGroup>

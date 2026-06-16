@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public sealed class BandwidthStream : Stream
 {

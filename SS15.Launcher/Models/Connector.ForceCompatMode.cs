@@ -3,7 +3,7 @@ using Serilog;
 using TerraFX.Interop.DirectX;
 using TerraFX.Interop.Windows;
 
-namespace Trauma.Launcher.Models;
+namespace SS15.Launcher.Models;
 
 public partial class Connector
 {

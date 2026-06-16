@@ -2,11 +2,11 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Splat;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Utility;
-using Trauma.Launcher.ViewModels.MainWindowTabs;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Utility;
+using SS15.Launcher.ViewModels.MainWindowTabs;
 
-namespace Trauma.Launcher.Views.MainWindowTabs;
+namespace SS15.Launcher.Views.MainWindowTabs;
 
 public partial class OptionsTabView : UserControl
 {

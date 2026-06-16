@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Models;
+namespace SS15.Launcher.Models;
 
 public static class LoginTokenExt
 {

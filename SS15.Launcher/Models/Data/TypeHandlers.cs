@@ -2,7 +2,7 @@ using System.Data;
 using System.Globalization;
 using Dapper;
 
-namespace Trauma.Launcher.Models.Data;
+namespace SS15.Launcher.Models.Data;
 
 public sealed class GuidTypeHandler : SqlMapper.TypeHandler<Guid>
 {

@@ -1,6 +1,6 @@
 using Splat;
 
-namespace Trauma.Launcher.Localization;
+namespace SS15.Launcher.Localization;
 
 public sealed class LocExtension
 {

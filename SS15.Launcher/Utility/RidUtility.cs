@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Serilog;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public static class RidUtility
 {

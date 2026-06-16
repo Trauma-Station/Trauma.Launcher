@@ -2,7 +2,7 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Media;
 using Avalonia.Visuals.Platform;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public sealed class AngleBox : Shape
 {

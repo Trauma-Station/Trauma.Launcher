@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using Avalonia.Threading;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Models.Logins;
-using Trauma.Launcher.Utility;
-using Trauma.Launcher.ViewModels;
+using SS15.Launcher.Models.Logins;
+using SS15.Launcher.Utility;
+using SS15.Launcher.ViewModels;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 public sealed class LauncherCommands
 {

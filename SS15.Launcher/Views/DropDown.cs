@@ -3,7 +3,7 @@ using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Metadata;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public sealed class DropDown : TemplatedControl
 {

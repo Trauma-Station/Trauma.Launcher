@@ -3,7 +3,7 @@ using Avalonia.Controls.Presenters;
 using Avalonia.LogicalTree;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace Trauma.Launcher.Views.MainWindowTabs;
+namespace SS15.Launcher.Views.MainWindowTabs;
 
 public partial class ServerEntryView : UserControl
 {

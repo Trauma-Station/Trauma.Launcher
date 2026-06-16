@@ -7,15 +7,15 @@ using Avalonia.Platform;
 using JetBrains.Annotations;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Models;
-using Trauma.Launcher.Models.ContentManagement;
-using Trauma.Launcher.Models.OverrideAssets;
-using Trauma.Launcher.Utility;
-using Trauma.Launcher.ViewModels;
-using Trauma.Launcher.Views;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Models;
+using SS15.Launcher.Models.ContentManagement;
+using SS15.Launcher.Models.OverrideAssets;
+using SS15.Launcher.Utility;
+using SS15.Launcher.ViewModels;
+using SS15.Launcher.Views;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 public sealed class App : Application
 {

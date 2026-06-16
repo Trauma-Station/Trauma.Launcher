@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 
-namespace Trauma.Launcher.Tests;
+namespace SS15.Launcher.Tests;
 
 [TestFixture]
 [Parallelizable(ParallelScope.All)]

@@ -3,12 +3,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:gif="using:Avalonia.Labs.Gif"
-             xmlns:vm="using:Trauma.Launcher.ViewModels"
-             xmlns:v="using:Trauma.Launcher.Views"
-             xmlns:loc="using:Trauma.Launcher.Localization"
-             xmlns:mainWindowTabs="using:Trauma.Launcher.ViewModels.MainWindowTabs"
+             xmlns:vm="using:SS15.Launcher.ViewModels"
+             xmlns:v="using:SS15.Launcher.Views"
+             xmlns:loc="using:SS15.Launcher.Localization"
+             xmlns:mainWindowTabs="using:SS15.Launcher.ViewModels.MainWindowTabs"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Trauma.Launcher.Views.MainWindowContent"
+             x:Class="SS15.Launcher.Views.MainWindowContent"
              x:DataType="vm:MainWindowViewModel">
   <Panel>
     <DockPanel LastChildFill="true">

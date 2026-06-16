@@ -1,7 +1,7 @@
 using Avalonia.Controls.Metadata;
 using Avalonia.Media;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 /// <summary>
 /// Animated spinner doodad

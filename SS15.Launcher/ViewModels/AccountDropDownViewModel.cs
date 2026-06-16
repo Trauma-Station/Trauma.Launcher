@@ -4,13 +4,13 @@ using DynamicData;
 using JetBrains.Annotations;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Api;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Models.Logins;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Api;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Models.Logins;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.ViewModels;
+namespace SS15.Launcher.ViewModels;
 
 public sealed partial class AccountDropDownViewModel : ViewModelBase
 {

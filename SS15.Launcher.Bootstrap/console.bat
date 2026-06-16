@@ -1,3 +1,3 @@
-"Trauma Station Launcher.exe" --debug
+"Space Station 15 Launcher.exe" --debug
 
 PAUSE

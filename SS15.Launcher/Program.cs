@@ -9,20 +9,20 @@ using Microsoft.Win32;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 using Splat;
-using Trauma.Launcher.Api;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Models;
-using Trauma.Launcher.Models.ContentManagement;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Models.ServerStatus;
-using Trauma.Launcher.Models.EngineManager;
-using Trauma.Launcher.Models.Logins;
-using Trauma.Launcher.Models.OverrideAssets;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Api;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Models;
+using SS15.Launcher.Models.ContentManagement;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Models.ServerStatus;
+using SS15.Launcher.Models.EngineManager;
+using SS15.Launcher.Models.Logins;
+using SS15.Launcher.Models.OverrideAssets;
+using SS15.Launcher.Utility;
 using TerraFX.Interop.Windows;
 using LogEventLevel = Serilog.Events.LogEventLevel;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 internal static class Program
 {

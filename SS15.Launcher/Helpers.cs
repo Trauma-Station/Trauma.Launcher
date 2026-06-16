@@ -10,7 +10,7 @@ using Serilog;
 using TerraFX.Interop.Windows;
 using Win = TerraFX.Interop.Windows.Windows;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 public static class Helpers
 {

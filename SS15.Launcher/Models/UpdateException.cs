@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Models;
+namespace SS15.Launcher.Models;
 
 public class UpdateException(string message) : Exception(message);
 public sealed class NoEngineForPlatformException(string message) : UpdateException(message);

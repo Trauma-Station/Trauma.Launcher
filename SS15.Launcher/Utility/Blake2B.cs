@@ -1,7 +1,7 @@
 using System.Buffers;
 using SpaceWizards.Sodium;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public static class Blake2B
 {

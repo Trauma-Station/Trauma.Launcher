@@ -2,11 +2,11 @@ using System.Linq;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.ViewModels;
+using SS15.Launcher.Localization;
+using SS15.Launcher.ViewModels;
 using TerraFX.Interop.Windows;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public partial class MainWindow : Window
 {

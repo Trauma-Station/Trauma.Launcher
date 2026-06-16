@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 internal static class Libc
 {

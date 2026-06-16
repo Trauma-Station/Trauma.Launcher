@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Text.RegularExpressions;
-using static Trauma.Launcher.Api.ServerApi;
+using static SS15.Launcher.Api.ServerApi;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 /// <summary>
 /// Helper code for inferring server tags from other metadata, such as their name.

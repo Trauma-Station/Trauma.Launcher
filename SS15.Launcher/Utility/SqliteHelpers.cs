@@ -2,7 +2,7 @@ using Microsoft.Data.Sqlite;
 using SQLitePCL;
 using static SQLitePCL.raw;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 /// <summary>
 /// Helper functions for making the raw SQLite API just a little bit easier to use.

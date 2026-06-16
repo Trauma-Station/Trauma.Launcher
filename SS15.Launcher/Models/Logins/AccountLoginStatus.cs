@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Models.Logins;
+namespace SS15.Launcher.Models.Logins;
 
 public enum AccountLoginStatus
 {

@@ -1,7 +1,7 @@
 using Splat;
-using Trauma.Launcher.Localization;
+using SS15.Launcher.Localization;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public static class LocatorExt
 {

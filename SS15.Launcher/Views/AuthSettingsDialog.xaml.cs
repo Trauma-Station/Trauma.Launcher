@@ -1,7 +1,7 @@
 using Avalonia.Interactivity;
-using Trauma.Launcher.ViewModels;
+using SS15.Launcher.ViewModels;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public partial class AuthSettingsDialog : Window
 {

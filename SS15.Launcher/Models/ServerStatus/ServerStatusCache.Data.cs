@@ -1,7 +1,7 @@
 using System.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace Trauma.Launcher.Models.ServerStatus;
+namespace SS15.Launcher.Models.ServerStatus;
 
 public sealed class ServerStatusData : ObservableObject, IServerStatusData
 {

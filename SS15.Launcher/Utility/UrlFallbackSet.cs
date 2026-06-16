@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Serilog;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public sealed class UrlFallbackSet
 {

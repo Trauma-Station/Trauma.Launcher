@@ -1,7 +1,7 @@
 using Avalonia.Input;
-using Trauma.Launcher.ViewModels.Login;
+using SS15.Launcher.ViewModels.Login;
 
-namespace Trauma.Launcher.Views.Login;
+namespace SS15.Launcher.Views.Login;
 
 public sealed partial class AuthTfaView : UserControl
 {

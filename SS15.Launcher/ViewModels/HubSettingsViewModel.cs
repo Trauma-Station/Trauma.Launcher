@@ -3,10 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using DynamicData;
 using Splat;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.ViewModels;
+namespace SS15.Launcher.ViewModels;
 
 public sealed class HubSettingsViewModel : ViewModelBase
 {

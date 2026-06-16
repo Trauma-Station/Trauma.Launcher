@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Models.ContentManagement;
+namespace SS15.Launcher.Models.ContentManagement;
 
 // Simple model classes for the content DB.
 

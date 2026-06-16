@@ -1,13 +1,13 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Splat;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Models.ContentManagement;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Models.EngineManager;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Models.ContentManagement;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Models.EngineManager;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.ViewModels.MainWindowTabs;
+namespace SS15.Launcher.ViewModels.MainWindowTabs;
 
 public sealed class OptionsTabViewModel : MainWindowTabViewModel
 {

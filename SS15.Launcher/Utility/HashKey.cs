@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 /// <summary>
 /// Wraps a byte array and implements equality for it, for use as a hashset/dictionary key.

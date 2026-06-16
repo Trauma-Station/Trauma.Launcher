@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Trauma.Launcher.Models.ServerStatus;
+namespace SS15.Launcher.Models.ServerStatus;
 
 /// <summary>
 ///     Contains data about the status of a single server.

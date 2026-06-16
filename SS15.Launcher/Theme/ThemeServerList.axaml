@@ -1,8 +1,8 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:loc="using:Trauma.Launcher.Localization"
-        xmlns:views="using:Trauma.Launcher.Views"
-        xmlns:mwt="using:Trauma.Launcher.Views.MainWindowTabs">
+        xmlns:loc="using:SS15.Launcher.Localization"
+        xmlns:views="using:SS15.Launcher.Views"
+        xmlns:mwt="using:SS15.Launcher.Views.MainWindowTabs">
   <Style Selector="ItemsControl.ServerList > ContentPresenter:nth-child(2n)">
     <Setter Property="Background">
       <SolidColorBrush Color="#262626" />

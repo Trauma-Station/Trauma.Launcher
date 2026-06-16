@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Serilog;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 public sealed class LauncherMessaging
 {

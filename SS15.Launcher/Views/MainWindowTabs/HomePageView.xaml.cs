@@ -2,10 +2,10 @@ using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using Avalonia.VisualTree;
 using Serilog;
-using Trauma.Launcher.ViewModels;
-using Trauma.Launcher.ViewModels.MainWindowTabs;
+using SS15.Launcher.ViewModels;
+using SS15.Launcher.ViewModels.MainWindowTabs;
 
-namespace Trauma.Launcher.Views.MainWindowTabs;
+namespace SS15.Launcher.Views.MainWindowTabs;
 
 public partial class HomePageView : UserControl
 {

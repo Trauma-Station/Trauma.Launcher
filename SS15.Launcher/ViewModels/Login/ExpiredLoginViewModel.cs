@@ -1,8 +1,8 @@
-using Trauma.Launcher.Api;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Models.Logins;
+using SS15.Launcher.Api;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Models.Logins;
 
-namespace Trauma.Launcher.ViewModels.Login;
+namespace SS15.Launcher.ViewModels.Login;
 
 public sealed partial class ExpiredLoginViewModel : BaseLoginViewModel
 {

@@ -1,9 +1,9 @@
 using Avalonia.Data;
 using Avalonia.Interactivity;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Views;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Views;
 
-namespace Trauma.Launcher.Controls;
+namespace SS15.Launcher.Controls;
 
 public sealed partial class AuthServerSelector : UserControl
 {

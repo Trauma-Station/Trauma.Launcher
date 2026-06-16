@@ -7,11 +7,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Serilog;
-using Trauma.Launcher.Models;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Api;
+namespace SS15.Launcher.Api;
 
 public sealed class AuthApi
 {

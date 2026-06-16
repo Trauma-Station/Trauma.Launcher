@@ -1,11 +1,11 @@
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 public static class ConfigConstants
 {
-    public const string CurrentLauncherVersion = "trauma-0.5";
+    public const string CurrentLauncherVersion = "SS15-0.5";
     public static readonly bool DoVersionCheck = true;
 
     // Refresh login tokens if they're within <this much> of expiry.
@@ -37,7 +37,7 @@ public static class ConfigConstants
     ];
     public const string DiscordUrl = "https://discord.traumastation.com/";
     public const string WebsiteUrl = "https://wiki.traumastation.com";
-    public const string DownloadUrl = "https://github.com/Trauma-Station/SS15.Launcher/releases";
+    public const string DownloadUrl = "https://github.com/Trauma-Station/Trauma.Launcher/releases";
     public const string NewsFeedUrl = "https://news.traumastation.com/index.xml";
 
     private static readonly Dictionary<string, UrlFallbackSet> EngineBaseUrls = new()

@@ -4,7 +4,7 @@ using Microsoft.Data.Sqlite;
 using SQLitePCL;
 using static SQLitePCL.raw;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 /// <summary>
 /// Expecting Microsoft top engineers to understand basic API design principles is too much to ask for,

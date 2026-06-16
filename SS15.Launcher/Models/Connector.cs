@@ -13,12 +13,12 @@ using Avalonia.Platform.Storage;
 using DynamicData;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Models.EngineManager;
-using Trauma.Launcher.Models.Logins;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Models.EngineManager;
+using SS15.Launcher.Models.Logins;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Models;
+namespace SS15.Launcher.Models;
 
 /// <summary>
 /// Responsible for actually launching the game.

@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public static class Language
 {

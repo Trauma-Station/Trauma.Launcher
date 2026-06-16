@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Avalonia.Threading;
 using DynamicData;
 using Serilog;
-using Trauma.Launcher.Api;
-using Trauma.Launcher.Models.Data;
+using SS15.Launcher.Api;
+using SS15.Launcher.Models.Data;
 
-namespace Trauma.Launcher.Models.Logins;
+namespace SS15.Launcher.Models.Logins;
 
 // This is different from DataManager in that this class actually manages logic more complex than raw storage.
 // Checking and refreshing tokens, marking accounts as "need signing in again", etc...

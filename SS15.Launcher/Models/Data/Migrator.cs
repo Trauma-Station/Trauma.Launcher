@@ -4,7 +4,7 @@ using Dapper;
 using Microsoft.Data.Sqlite;
 using Serilog;
 
-namespace Trauma.Launcher.Models.Data;
+namespace SS15.Launcher.Models.Data;
 
 /// <summary>
 /// Utility class to do SQLite database migrations.

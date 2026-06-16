@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Trauma.Launcher.Models;
+namespace SS15.Launcher.Models;
 
 /// <summary>
 ///     Basic data type to deserialize from the /info API endpoint on the server.

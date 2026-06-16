@@ -1,7 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:controls="using:Trauma.Launcher.Controls"
-             x:Class="Trauma.Launcher.Controls.AuthServerSelector"
+             xmlns:controls="using:SS15.Launcher.Controls"
+             x:Class="SS15.Launcher.Controls.AuthServerSelector"
              x:DataType="controls:AuthServerSelector">
     <StackPanel Margin="40" MinWidth="220" MinHeight="400">
         <TextBlock TextAlignment="Center"

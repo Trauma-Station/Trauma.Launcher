@@ -1,4 +1,4 @@
-﻿namespace Trauma.Launcher.Models.ServerStatus;
+﻿namespace SS15.Launcher.Models.ServerStatus;
 
 /// <summary>
 /// Where we get server status and info data from.

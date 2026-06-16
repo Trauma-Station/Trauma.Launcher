@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
-namespace Trauma.Launcher.Api;
+namespace SS15.Launcher.Api;
 
 public static class ServerApi
 {

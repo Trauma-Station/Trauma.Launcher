@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 
-namespace Trauma.Launcher.Bootstrap
+namespace SS15.Launcher.Bootstrap
 {
     internal static partial class Program
     {

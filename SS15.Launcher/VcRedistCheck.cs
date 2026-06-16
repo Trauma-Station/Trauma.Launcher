@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using TerraFX.Interop.Windows;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 // Checks that the VC++ 2015 redist, which the game needs, is present.
 public static class VcRedistCheck

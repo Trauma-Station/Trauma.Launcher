@@ -1,9 +1,9 @@
 using Splat;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.ViewModels.MainWindowTabs;
+namespace SS15.Launcher.ViewModels.MainWindowTabs;
 
 public sealed class DevelopmentTabViewModel : MainWindowTabViewModel
 {

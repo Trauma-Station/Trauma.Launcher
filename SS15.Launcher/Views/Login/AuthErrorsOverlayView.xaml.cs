@@ -1,10 +1,10 @@
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.VisualTree;
-using Trauma.Launcher.ViewModels.Login;
+using SS15.Launcher.ViewModels.Login;
 using YamlDotNet.Core;
 
-namespace Trauma.Launcher.Views.Login;
+namespace SS15.Launcher.Views.Login;
 
 public sealed partial class AuthErrorsOverlayView : UserControl
 {

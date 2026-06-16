@@ -1,7 +1,7 @@
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 public static class IconsLoader
 {

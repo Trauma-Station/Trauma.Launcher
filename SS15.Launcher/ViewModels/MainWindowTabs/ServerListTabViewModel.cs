@@ -2,11 +2,11 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Reactive.Linq;
 using Splat;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Models.ServerStatus;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Models.ServerStatus;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.ViewModels.MainWindowTabs;
+namespace SS15.Launcher.ViewModels.MainWindowTabs;
 
 public sealed partial class ServerListTabViewModel : MainWindowTabViewModel
 {

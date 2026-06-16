@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 /// <summary>
 ///     Contains file paths used by the launcher to manage data.

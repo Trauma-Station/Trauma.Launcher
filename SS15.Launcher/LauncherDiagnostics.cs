@@ -9,7 +9,7 @@ using SQLitePCL;
 using X86Aes = System.Runtime.Intrinsics.X86.Aes;
 using ArmAes = System.Runtime.Intrinsics.Arm.Aes;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 internal static class LauncherDiagnostics
 {

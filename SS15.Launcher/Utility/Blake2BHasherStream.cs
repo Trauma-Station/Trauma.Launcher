@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using SpaceWizards.Sodium;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public sealed class Blake2BHasherStream : Stream
 {

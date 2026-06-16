@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Views.MainWindowTabs;
+namespace SS15.Launcher.Views.MainWindowTabs;
 
 public sealed partial class DevelopmentTabView : UserControl
 {

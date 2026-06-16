@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.ViewModels.Login;
+namespace SS15.Launcher.ViewModels.Login;
 
 public interface IErrorOverlayOwner
 {

@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <IsPackable>false</IsPackable>
-    <RootNamespace>Trauma.Launcher.Tests</RootNamespace>
+    <RootNamespace>SS15.Launcher.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

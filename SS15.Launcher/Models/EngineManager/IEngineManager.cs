@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 
-namespace Trauma.Launcher.Models.EngineManager;
+namespace SS15.Launcher.Models.EngineManager;
 // This is an interface instead of a class because
 // I was originally planning to make Steam builds bundle the engine with the Steam download.
 

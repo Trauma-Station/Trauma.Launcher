@@ -9,10 +9,10 @@ using Linguini.Shared.Types.Bundle;
 using Linguini.Syntax.Parser;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Localization;
+namespace SS15.Launcher.Localization;
 
 public sealed class LocalizationManager
 {

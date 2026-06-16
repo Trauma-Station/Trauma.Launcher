@@ -1,8 +1,8 @@
 using System.Collections.ObjectModel;
 using CodeHollow.FeedReader;
-using Trauma.Launcher.Localization;
+using SS15.Launcher.Localization;
 
-namespace Trauma.Launcher.ViewModels.MainWindowTabs;
+namespace SS15.Launcher.ViewModels.MainWindowTabs;
 
 public sealed class NewsTabViewModel : MainWindowTabViewModel
 {

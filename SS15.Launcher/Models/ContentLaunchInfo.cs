@@ -1,4 +1,4 @@
-﻿namespace Trauma.Launcher.Models;
+﻿namespace SS15.Launcher.Models;
 
 /// <summary>
 /// Information loaded by the updater that we need to launch the game.

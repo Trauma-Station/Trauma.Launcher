@@ -11,10 +11,10 @@ using Microsoft.Data.Sqlite;
 using Serilog;
 using SpaceWizards.Sodium;
 using SQLitePCL;
-using Trauma.Launcher.Models.ContentManagement;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.ContentManagement;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Models;
+namespace SS15.Launcher.Models;
 
 //
 // Logic for updater manifest (delta) downloads.

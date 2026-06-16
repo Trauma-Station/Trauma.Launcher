@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Models.ServerStatus;
+namespace SS15.Launcher.Models.ServerStatus;
 
 public enum ServerStatusCode
 {

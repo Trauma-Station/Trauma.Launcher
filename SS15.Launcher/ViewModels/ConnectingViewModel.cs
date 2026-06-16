@@ -2,11 +2,11 @@ using System.Reactive.Linq;
 using System.Threading;
 using Avalonia.Platform.Storage;
 using Splat;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Models;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Models;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.ViewModels;
+namespace SS15.Launcher.ViewModels;
 
 public sealed class ConnectingViewModel : ViewModelBase
 {

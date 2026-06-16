@@ -1,6 +1,6 @@
 using Avalonia.Rendering;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 /// <summary>
 /// Utility control that always hit tests in its geometry region.

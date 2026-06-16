@@ -2,9 +2,9 @@
 // Licensed under the MIT license. See LICENSE-AVALONIA.txt file in the project root for full license information.
 
 using Avalonia.Controls.Templates;
-using Trauma.Launcher.ViewModels;
+using SS15.Launcher.ViewModels;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 public sealed class ViewLocator : IDataTemplate
 {

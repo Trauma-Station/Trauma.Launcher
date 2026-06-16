@@ -1,10 +1,10 @@
 using System.Collections.ObjectModel;
 using Splat;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Utility;
-using static Trauma.Launcher.ViewModels.HubSettingsViewModel;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Utility;
+using static SS15.Launcher.ViewModels.HubSettingsViewModel;
 
-namespace Trauma.Launcher.ViewModels;
+namespace SS15.Launcher.ViewModels;
 
 public sealed class AuthSettingsViewModel : ViewModelBase
 {

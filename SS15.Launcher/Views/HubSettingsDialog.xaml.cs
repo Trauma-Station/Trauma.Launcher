@@ -1,11 +1,11 @@
 using System.Linq;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.ViewModels;
-using static Trauma.Launcher.ViewModels.HubSettingsViewModel;
+using SS15.Launcher.Localization;
+using SS15.Launcher.ViewModels;
+using static SS15.Launcher.ViewModels.HubSettingsViewModel;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public partial class HubSettingsDialog : Window
 {

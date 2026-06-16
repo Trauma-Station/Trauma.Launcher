@@ -1,4 +1,4 @@
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 public static class Global
 {

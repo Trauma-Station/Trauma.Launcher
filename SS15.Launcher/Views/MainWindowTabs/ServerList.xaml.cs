@@ -1,9 +1,9 @@
 using Avalonia.Controls.Primitives;
 using Avalonia.Metadata;
 using Serilog;
-using Trauma.Launcher.ViewModels.MainWindowTabs;
+using SS15.Launcher.ViewModels.MainWindowTabs;
 
-namespace Trauma.Launcher.Views.MainWindowTabs;
+namespace SS15.Launcher.Views.MainWindowTabs;
 
 public sealed partial class ServerList : TemplatedControl
 {

@@ -1,5 +1,5 @@
 <Style xmlns="https://github.com/avaloniaui"
-       xmlns:views="using:Trauma.Launcher.Views"
+       xmlns:views="using:SS15.Launcher.Views"
        Selector="ContentControl.OverlayBox">
   <Setter Property="Template">
     <ControlTemplate>

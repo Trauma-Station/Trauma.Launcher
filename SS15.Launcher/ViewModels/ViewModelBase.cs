@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.ViewModels;
+namespace SS15.Launcher.ViewModels;
 
 public abstract class ViewModelBase : ReactiveObject, IViewModelBase;
 

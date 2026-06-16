@@ -13,14 +13,14 @@ using Dapper;
 using Microsoft.Data.Sqlite;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Models.ContentManagement;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Models.EngineManager;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.ContentManagement;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Models.EngineManager;
+using SS15.Launcher.Utility;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace Trauma.Launcher.Models;
+namespace SS15.Launcher.Models;
 
 public sealed partial class Updater : ReactiveObject
 {

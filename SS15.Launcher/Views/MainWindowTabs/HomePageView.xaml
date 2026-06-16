@@ -2,12 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:mainWindowTabs="using:Trauma.Launcher.ViewModels.MainWindowTabs"
-             xmlns:loc="using:Trauma.Launcher.Localization"
-             xmlns:v="using:Trauma.Launcher.Views"
-             xmlns:mwt="using:Trauma.Launcher.Views.MainWindowTabs"
+             xmlns:mainWindowTabs="using:SS15.Launcher.ViewModels.MainWindowTabs"
+             xmlns:loc="using:SS15.Launcher.Localization"
+             xmlns:v="using:SS15.Launcher.Views"
+             xmlns:mwt="using:SS15.Launcher.Views.MainWindowTabs"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Trauma.Launcher.Views.MainWindowTabs.HomePageView"
+             x:Class="SS15.Launcher.Views.MainWindowTabs.HomePageView"
              x:DataType="mainWindowTabs:HomePageViewModel">
   <DockPanel>
     <!-- Header controls -->

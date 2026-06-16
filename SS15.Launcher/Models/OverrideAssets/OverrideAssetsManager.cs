@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using Serilog;
-using Trauma.Launcher.Models.Data;
+using SS15.Launcher.Models.Data;
 
-namespace Trauma.Launcher.Models.OverrideAssets;
+namespace SS15.Launcher.Models.OverrideAssets;
 
 public sealed class OverrideAssetsManager
 {

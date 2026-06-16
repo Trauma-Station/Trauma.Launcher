@@ -4,7 +4,7 @@ using Serilog.Core.Enrichers;
 
 // ReSharper disable TemplateIsNotCompileTimeConstantProblem
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 internal sealed class AvaloniaSeriLogger : ILogSink
 {

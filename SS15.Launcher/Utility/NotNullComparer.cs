@@ -1,4 +1,4 @@
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 /// <summary>
 /// Wrapper around <see cref="IComparer{T}"/> that handles nulls for you.

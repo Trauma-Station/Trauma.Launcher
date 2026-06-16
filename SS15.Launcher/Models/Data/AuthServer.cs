@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Trauma.Launcher.Models.Data;
+namespace SS15.Launcher.Models.Data;
 
 /// <summary>
 /// A centralized auth server the user can log in to.

@@ -1,6 +1,6 @@
 using Avalonia.Markup.Xaml;
 
-namespace Trauma.Launcher.Views;
+namespace SS15.Launcher.Views;
 
 public partial class AccountDropDown : UserControl
 {

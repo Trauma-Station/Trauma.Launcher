@@ -1,6 +1,6 @@
-using static Trauma.Launcher.Api.ServerApi;
+using static SS15.Launcher.Api.ServerApi;
 
-namespace Trauma.Launcher.ViewModels.MainWindowTabs;
+namespace SS15.Launcher.ViewModels.MainWindowTabs;
 
 public sealed partial class ServerListFiltersViewModel
 {

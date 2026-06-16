@@ -1,4 +1,4 @@
-﻿namespace Trauma.Launcher.Utility;
+﻿namespace SS15.Launcher.Utility;
 
 /// <summary>
 /// Specifies a single filter checkbox the user can toggle to filter servers.

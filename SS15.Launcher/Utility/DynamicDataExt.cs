@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using DynamicData;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public static class DynamicDataExt
 {

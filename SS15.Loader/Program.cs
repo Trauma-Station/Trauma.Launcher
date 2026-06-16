@@ -9,7 +9,7 @@ using System.Runtime.Loader;
 using NSec.Cryptography;
 using Robust.LoaderApi;
 
-namespace Trauma.Loader;
+namespace SS15.Loader;
 
 internal class Program
 {

@@ -7,10 +7,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Serilog;
 using Splat;
-using Trauma.Launcher.Api;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Api;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Models.ServerStatus;
+namespace SS15.Launcher.Models.ServerStatus;
 
 /// <summary>
 ///     Caches information pulled from servers and updates it asynchronously.

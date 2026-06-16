@@ -1,8 +1,8 @@
 using Avalonia.Controls.Primitives;
 using Avalonia.Threading;
-using Trauma.Launcher.Localization;
+using SS15.Launcher.Localization;
 
-namespace Trauma.Launcher.Controls;
+namespace SS15.Launcher.Controls;
 
 public sealed class TimerTextCell : TemplatedControl
 {

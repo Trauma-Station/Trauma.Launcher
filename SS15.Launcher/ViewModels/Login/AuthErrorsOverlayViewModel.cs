@@ -1,7 +1,7 @@
-using Trauma.Launcher.Api;
-using Trauma.Launcher.Localization;
+using SS15.Launcher.Api;
+using SS15.Launcher.Localization;
 
-namespace Trauma.Launcher.ViewModels.Login;
+namespace SS15.Launcher.ViewModels.Login;
 
 public sealed class AuthErrorsOverlayViewModel : ViewModelBase
 {

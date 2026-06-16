@@ -1,4 +1,4 @@
-﻿namespace Trauma.Launcher.Models.ContentManagement;
+﻿namespace SS15.Launcher.Models.ContentManagement;
 
 /// <summary>
 /// Compression schemes for data stored in the content database.

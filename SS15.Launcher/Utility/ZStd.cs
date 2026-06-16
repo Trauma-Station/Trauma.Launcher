@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using SharpZstd.Interop;
 using static SharpZstd.Interop.Zstd;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 public static class ZStd
 {

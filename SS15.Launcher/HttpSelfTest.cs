@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Serilog;
 using SocketsHttpHandler = System.Net.Http.SocketsHttpHandler;
 
-namespace Trauma.Launcher;
+namespace SS15.Launcher;
 
 //
 // HTTP self-test system.

@@ -6,7 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using Robust.LoaderApi;
 
-namespace Trauma.Loader;
+namespace SS15.Loader;
 
 internal sealed class ZipFileApi : IFileApi, IDisposable
 {

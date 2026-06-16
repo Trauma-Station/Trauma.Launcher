@@ -1,7 +1,7 @@
 using System.Data;
 using Microsoft.Data.Sqlite;
 
-namespace Trauma.Launcher.Models.Data.Migrations;
+namespace SS15.Launcher.Models.Data.Migrations;
 
 public sealed class Script0002_ContentDB : Migrator.IMigrationScript
 {

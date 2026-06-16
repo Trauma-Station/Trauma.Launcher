@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.Sqlite;
 using Serilog;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Utility;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Utility;
 
-namespace Trauma.Launcher.Models.ContentManagement;
+namespace SS15.Launcher.Models.ContentManagement;
 
 public sealed class ContentManager
 {

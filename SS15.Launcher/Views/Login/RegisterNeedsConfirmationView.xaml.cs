@@ -1,6 +1,6 @@
 using Avalonia.Markup.Xaml;
 
-namespace Trauma.Launcher.Views.Login;
+namespace SS15.Launcher.Views.Login;
 
 public partial class RegisterNeedsConfirmationView : UserControl
 {

@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Trauma.Launcher.Utility;
+namespace SS15.Launcher.Utility;
 
 /// <summary>
 ///     Stream that passes through data to/from another stream while running a <see cref="IncrementalHash"/> on it.

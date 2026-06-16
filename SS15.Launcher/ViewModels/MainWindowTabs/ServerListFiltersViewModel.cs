@@ -3,14 +3,14 @@ using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Trauma.Launcher.Localization;
-using Trauma.Launcher.Models.Data;
-using Trauma.Launcher.Models.ServerStatus;
-using Trauma.Launcher.Utility;
-using static Trauma.Launcher.Api.ServerApi;
-using static Trauma.Launcher.Utility.HubUtility;
+using SS15.Launcher.Localization;
+using SS15.Launcher.Models.Data;
+using SS15.Launcher.Models.ServerStatus;
+using SS15.Launcher.Utility;
+using static SS15.Launcher.Api.ServerApi;
+using static SS15.Launcher.Utility.HubUtility;
 
-namespace Trauma.Launcher.ViewModels.MainWindowTabs;
+namespace SS15.Launcher.ViewModels.MainWindowTabs;
 
 public sealed partial class ServerListFiltersViewModel : ObservableObject
 {

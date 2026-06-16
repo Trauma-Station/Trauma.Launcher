@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Trauma.Launcher.Models.Data;
+namespace SS15.Launcher.Models.Data;
 
 public sealed class FavoriteServer : ReactiveObject
 {
