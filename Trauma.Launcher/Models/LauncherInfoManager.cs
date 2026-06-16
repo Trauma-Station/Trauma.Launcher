@@ -37,7 +37,7 @@ public sealed class LauncherInfoManager(HttpClient httpClient)
         LauncherInfoModel? info;
         try
         {
-            Log.Debug("Loading launcher info... {Url}", ConfigConstants.UrlLauncherInfo);
+            Log.Debug("Loading launcher info... {Url}", ConfigConstants.UrlLauncherInfo.GetMostSuccessfulUrl());
             info = await ConfigConstants.UrlLauncherInfo.GetFromJsonAsync<LauncherInfoModel>(httpClient);
             if (info == null)
             {
