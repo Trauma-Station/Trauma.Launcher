@@ -52,24 +52,24 @@ public sealed class MainWindowLoginViewModel : ViewModelBase
         Screen = new RegisterViewModel(this, _cfg, _authApi, _loginMgr);
     }
 
-    public void SwitchToForgotPassword()
+    public void SwitchToForgotPassword(AuthServer server)
     {
-        Screen = new ForgotPasswordViewModel(this, _authApi);
+        Screen = new ForgotPasswordViewModel(this, _authApi, server);
     }
 
-    public void SwitchToAuthTfa(AuthApi.AuthenticateRequest request)
+    public void SwitchToAuthTfa(AuthServer server, AuthApi.AuthenticateRequest request)
     {
-        Screen = new AuthTfaViewModel(this, request, _loginMgr, _authApi, _cfg);
+        Screen = new AuthTfaViewModel(this, request, _loginMgr, _authApi, _cfg, server);
     }
 
-    public void SwitchToResendConfirmation()
+    public void SwitchToResendConfirmation(AuthServer server)
     {
-        Screen = new ResendConfirmationViewModel(this, _authApi);
+        Screen = new ResendConfirmationViewModel(this, _authApi, server);
     }
 
-    public void SwitchToRegisterNeedsConfirmation(string username, string password)
+    public void SwitchToRegisterNeedsConfirmation(AuthServer server, string username, string password)
     {
-        Screen = new RegisterNeedsConfirmationViewModel(this, _authApi, username, password, _loginMgr, _cfg);
+        Screen = new RegisterNeedsConfirmationViewModel(this, _authApi, username, password, _loginMgr, _cfg, server);
     }
 
     public void OpenLogDirectory()

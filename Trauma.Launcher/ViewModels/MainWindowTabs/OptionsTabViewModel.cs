@@ -80,6 +80,9 @@ public sealed class OptionsTabViewModel : MainWindowTabViewModel
 
     public void OpenAccountSettings()
     {
-        Helpers.OpenUri(ConfigConstants.AccountManagementUrl);
+        if (Cfg.CurrentAuthServer is not { } server)
+            return; // not logged in so no settings to manage
+
+        Helpers.OpenUri(server.ManagementUrl);
     }
 }

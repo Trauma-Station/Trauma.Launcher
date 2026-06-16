@@ -10,6 +10,7 @@ public sealed partial class AuthTfaViewModel : BaseLoginViewModel
     private readonly LoginManager _loginMgr;
     private readonly AuthApi _authApi;
     private readonly DataManager _cfg;
+    private readonly AuthServer _server;
 
     [Reactive] public string _code = "";
 
@@ -20,12 +21,14 @@ public sealed partial class AuthTfaViewModel : BaseLoginViewModel
         AuthApi.AuthenticateRequest request,
         LoginManager loginMgr,
         AuthApi authApi,
-        DataManager cfg) : base(parentVm)
+        DataManager cfg,
+        AuthServer server) : base(parentVm)
     {
         _request = request;
         _loginMgr = loginMgr;
         _authApi = authApi;
         _cfg = cfg;
+        _server = server;
 
         this.WhenAnyValue(x => x.Code)
             .Subscribe(s => { IsInputValid = CheckInputValid(s); });
@@ -56,9 +59,9 @@ public sealed partial class AuthTfaViewModel : BaseLoginViewModel
         Busy = true;
         try
         {
-            var resp = await _authApi.AuthenticateAsync(tfaLogin);
+            var resp = await _authApi.AuthenticateAsync(_server, tfaLogin);
 
-            await LoginViewModel.DoLogin(this, tfaLogin, resp, _loginMgr, _authApi);
+            await LoginViewModel.DoLogin(this, tfaLogin, resp, _loginMgr, _authApi, _server);
 
             _cfg.CommitConfig();
         }
@@ -72,7 +75,7 @@ public sealed partial class AuthTfaViewModel : BaseLoginViewModel
     {
         // I don't want to implement recovery code stuff, so if you need them,
         // bloody use them to disable your authenticator app online.
-        Helpers.OpenUri(ConfigConstants.AccountManagementUrl);
+        Helpers.OpenUri(_server.ManagementUrl);
     }
 
     public void Cancel()

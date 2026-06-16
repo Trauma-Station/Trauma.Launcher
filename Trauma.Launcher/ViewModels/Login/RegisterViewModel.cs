@@ -9,9 +9,11 @@ namespace Trauma.Launcher.ViewModels.Login;
 
 public sealed partial class RegisterViewModel : BaseLoginViewModel
 {
-    private readonly DataManager _cfg;
+    [Reactive] public partial DataManager Cfg { get; private set; }
     private readonly AuthApi _authApi;
     private readonly LoginManager _loginMgr;
+
+    [Reactive] public AuthServer _server = ConfigConstants.DefaultAuthServers[0];
 
     [Reactive] public partial string EditingUsername { get; set; } = "";
     [Reactive] public partial string EditingPassword { get; set; } = "";
@@ -26,7 +28,7 @@ public sealed partial class RegisterViewModel : BaseLoginViewModel
     public RegisterViewModel(MainWindowLoginViewModel parentVm, DataManager cfg, AuthApi authApi, LoginManager loginMgr)
         : base(parentVm)
     {
-        _cfg = cfg;
+        Cfg = cfg;
         _authApi = authApi;
         _loginMgr = loginMgr;
 
@@ -98,7 +100,7 @@ public sealed partial class RegisterViewModel : BaseLoginViewModel
         Busy = true;
         try
         {
-            var result = await _authApi.RegisterAsync(EditingUsername, EditingEmail, EditingPassword);
+            var result = await _authApi.RegisterAsync(Server, EditingUsername, EditingEmail, EditingPassword);
             if (!result.IsSuccess)
             {
                 OverlayControl = new AuthErrorsOverlayViewModel(this, "Unable to register", result.Errors);
@@ -111,17 +113,17 @@ public sealed partial class RegisterViewModel : BaseLoginViewModel
                 BusyText = "Logging in...";
                 // No confirmation needed, log in immediately.
                 var request = new AuthApi.AuthenticateRequest(EditingUsername, EditingPassword);
-                var resp = await _authApi.AuthenticateAsync(request);
+                var resp = await _authApi.AuthenticateAsync(Server, request);
 
-                await LoginViewModel.DoLogin(this, request, resp, _loginMgr, _authApi);
+                await LoginViewModel.DoLogin(this, request, resp, _loginMgr, _authApi, Server);
 
-                _cfg.CommitConfig();
+                Cfg.CommitConfig();
             }
             else
             {
                 Debug.Assert(status == RegisterResponseStatus.RegisteredNeedConfirmation);
 
-                ParentVM.SwitchToRegisterNeedsConfirmation(EditingUsername, EditingPassword);
+                ParentVM.SwitchToRegisterNeedsConfirmation(Server, EditingUsername, EditingPassword);
             }
         }
         finally

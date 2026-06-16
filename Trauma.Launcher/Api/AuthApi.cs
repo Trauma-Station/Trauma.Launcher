@@ -22,13 +22,11 @@ public sealed class AuthApi
         _httpClient = http;
     }
 
-    public async Task<AuthenticateResult> AuthenticateAsync(AuthenticateRequest request)
+    public async Task<AuthenticateResult> AuthenticateAsync(AuthServer server, AuthenticateRequest request)
     {
         try
         {
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/authenticate";
-
-            using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
+            using var resp = await server.PostAsJsonAsync(_httpClient, "api/auth/authenticate", request);
 
             if (resp.IsSuccessStatusCode)
             {
@@ -36,6 +34,7 @@ public sealed class AuthApi
                 var token = new LoginToken(respJson.Token, respJson.ExpireTime);
                 return new AuthenticateResult(new LoginInfo
                 {
+                    AuthServer = server.Name,
                     UserId = respJson.UserId,
                     Token = token,
                     Username = respJson.Username
@@ -73,16 +72,13 @@ public sealed class AuthApi
         }
     }
 
-    public async Task<RegisterResult> RegisterAsync(string username, string email, string password)
+    public async Task<RegisterResult> RegisterAsync(AuthServer server, string username, string email, string password)
     {
         try
         {
             var request = new RegisterRequest(username, email, password);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/register";
-
-            using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
-
+            using var resp = await server.PostAsJsonAsync(_httpClient, "api/auth/register", request);
             if (resp.IsSuccessStatusCode)
             {
                 var respJson = await resp.Content.AsJson<RegisterResponse>();
@@ -115,16 +111,13 @@ public sealed class AuthApi
     }
 
     /// <returns>Any errors that occured</returns>
-    public async Task<string[]?> ForgotPasswordAsync(string email)
+    public async Task<string[]?> ForgotPasswordAsync(AuthServer server, string email)
     {
         try
         {
             var request = new ResetPasswordRequest(email);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/resetPassword";
-
-            using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
-
+            using var resp = await server.PostAsJsonAsync(_httpClient, "api/auth/resetPassword", request);
             if (resp.IsSuccessStatusCode)
             {
                 return null;
@@ -142,16 +135,13 @@ public sealed class AuthApi
         }
     }
 
-    public async Task<string[]?> ResendConfirmationAsync(string email)
+    public async Task<string[]?> ResendConfirmationAsync(AuthServer server, string email)
     {
         try
         {
             var request = new ResendConfirmationRequest(email);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/resendConfirmation";
-
-            using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
-
+            using var resp = await server.PostAsJsonAsync(_httpClient, "api/auth/resendConfirmation", request);
             if (resp.IsSuccessStatusCode)
             {
                 return null;
@@ -174,16 +164,13 @@ public sealed class AuthApi
     /// <exception cref="AuthApiException">
     ///     Thrown if an unexpected error occured.
     /// </exception>
-    public async Task<LoginToken?> RefreshTokenAsync(string token)
+    public async Task<LoginToken?> RefreshTokenAsync(AuthServer server, string token)
     {
         try
         {
             var request = new RefreshRequest(token);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/refresh";
-
-            using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
-
+            using var resp = await server.PostAsJsonAsync(_httpClient, "api/auth/refresh", request);
             if (resp.IsSuccessStatusCode)
             {
                 var response = await resp.Content.AsJson<RefreshResponse>();
@@ -217,16 +204,13 @@ public sealed class AuthApi
         }
     }
 
-    public async Task LogoutTokenAsync(string token)
+    public async Task LogoutTokenAsync(AuthServer server, string token)
     {
         try
         {
             var request = new LogoutRequest(token);
 
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/logout";
-
-            using var resp = await _httpClient.PostAsJsonAsync(authUrl, request);
-
+            using var resp = await server.PostAsJsonAsync(_httpClient, "api/auth/logout", request);
             if (resp.IsSuccessStatusCode)
             {
                 return;
@@ -251,28 +235,17 @@ public sealed class AuthApi
     /// <exception cref="AuthApiException">
     ///     Thrown if an unexpected error occured.
     /// </exception>
-    public async Task<bool> CheckTokenAsync(string token)
+    public async Task<bool> CheckTokenAsync(AuthServer server, string token)
     {
         try
         {
-            var authUrl = ConfigConstants.AuthUrl + "api/auth/ping";
-
-            using var resp = await authUrl.SendAsync(_httpClient, url =>
-            {
-                var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("SS14Auth", token);
-                return requestMessage;
-            });
-
+            var message = server.AuthenticatedMessage("api/auth/ping", token);
+            using var resp = await _httpClient.SendAsync(message);
             if (resp.IsSuccessStatusCode)
-            {
                 return true;
-            }
 
             if (resp.StatusCode == HttpStatusCode.Unauthorized)
-            {
                 return false;
-            }
 
             // Unknown error? uh oh.
             Log.Error("Server returned unexpected HTTP status code: {responseCode}", resp.StatusCode);

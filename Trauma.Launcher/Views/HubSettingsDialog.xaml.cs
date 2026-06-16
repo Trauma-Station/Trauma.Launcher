@@ -9,14 +9,14 @@ namespace Trauma.Launcher.Views;
 
 public partial class HubSettingsDialog : Window
 {
-    private readonly HubSettingsViewModel _viewModel;
+    private readonly HubSettingsViewModel _viewModel = new();
     private readonly LocalizationManager _loc = LocalizationManager.Instance;
 
     public HubSettingsDialog()
     {
         InitializeComponent();
 
-        _viewModel = (DataContext as HubSettingsViewModel)!; // Should have been set in XAML
+        DataContext = _viewModel;
         _viewModel.HubList.CollectionChanged += (_, _) => Verify();
     }
 

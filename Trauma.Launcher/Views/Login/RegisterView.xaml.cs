@@ -14,6 +14,10 @@ public partial class RegisterView : UserControl
         EmailBox.KeyDown += OnTextBoxKeyDown;
         PasswordBox.KeyDown += OnTextBoxKeyDown;
         PasswordConfirmBox.KeyDown += OnTextBoxKeyDown;
+
+        this.WhenAnyValue(v => v.DataContext)
+            .Subscribe(vm => ((RegisterViewModel) vm!).WhenAnyValue(vm => vm.Cfg)
+                .Subscribe(cfg => AuthServerSelector.Update(cfg)));
     }
 
     private void OnTextBoxKeyDown(object? sender, KeyEventArgs args)

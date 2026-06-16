@@ -18,7 +18,7 @@
     <Button Content="{Binding ConfirmButtonText}" Command="{Binding ConfirmButtonPressed}"
             IsEnabled="{Binding ConfirmButtonEnabled}" DockPanel.Dock="Top" HorizontalAlignment="Center" />
 
-    <Button Content="{loc:Loc login-confirmation-button-cancel}" Command="{Binding ParentVM.SwitchToRegister}"
+    <Button Content="{loc:Loc login-confirmation-button-cancel}" Command="{Binding SwitchToRegister}"
             DockPanel.Dock="Bottom" HorizontalAlignment="Center" />
   </DockPanel>
 </UserControl>

@@ -52,6 +52,11 @@
         <TextBlock VerticalAlignment="Center" TextWrapping="Wrap"
                    Text="{loc:Loc tab-options-hub-settings-desc}"
                    Margin="8" />
+
+        <Button Click="OpenAuthSettings" Content="Edit Auth Servers" Margin="4" HorizontalAlignment="Left" />
+        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap"
+                   Text="Add custom authentication servers to log in with. Some game servers may require this."
+                   Margin="8" />
       </StackPanel>
     </DockPanel>
   </ScrollViewer>

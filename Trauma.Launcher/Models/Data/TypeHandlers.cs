@@ -14,7 +14,14 @@ public sealed class GuidTypeHandler : SqlMapper.TypeHandler<Guid>
 
     public override Guid Parse(object value)
     {
-        return Guid.Parse((string) value);
+        try
+        {
+            return Guid.Parse((string) value);
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException($"Failed to parse {value} as a GUID", e);
+        }
     }
 }
 

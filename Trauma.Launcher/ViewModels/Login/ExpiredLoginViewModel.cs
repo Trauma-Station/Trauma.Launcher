@@ -32,13 +32,16 @@ public sealed partial class ExpiredLoginViewModel : BaseLoginViewModel
         if (Busy)
             return;
 
+        if (_cfg.GetAuthServer(Account.AuthServer) is not { } server)
+            return; // how did you manage to get here
+
         Busy = true;
         try
         {
             var request = new AuthApi.AuthenticateRequest(Account.UserId, EditingPassword);
-            var resp = await _authApi.AuthenticateAsync(request);
+            var resp = await _authApi.AuthenticateAsync(server, request);
 
-            await LoginViewModel.DoLogin(this, request, resp, _loginMgr, _authApi);
+            await LoginViewModel.DoLogin(this, request, resp, _loginMgr, _authApi, server);
 
             _cfg.CommitConfig();
         }

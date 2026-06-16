@@ -45,4 +45,9 @@ public partial class OptionsTabView : UserControl
     {
         await new HubSettingsDialog().ShowDialog((Window)TopLevel.GetTopLevel(this)!);
     }
+
+    private async void OpenAuthSettings(object? sender, RoutedEventArgs args)
+    {
+        await new AuthSettingsDialog().ShowDialog((Window)TopLevel.GetTopLevel(this)!);
+    }
 }

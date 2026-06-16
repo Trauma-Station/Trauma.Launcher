@@ -64,14 +64,14 @@ public static class CVars
     public static readonly CVarDef<bool> LogLauncherVerbose = CVarDef.Create("LogLauncherVerbose", false);
 
     /// <summary>
-    /// Enable multi-account support on release builds.
-    /// </summary>
-    public static readonly CVarDef<bool> MultiAccounts = CVarDef.Create("MultiAccounts", false);
-
-    /// <summary>
     /// Currently selected login in the drop down.
     /// </summary>
     public static readonly CVarDef<string> SelectedLogin = CVarDef.Create("SelectedLogin", "");
+
+    /// <summary>
+    /// Currently selected login's auth server.
+    /// </summary>
+    public static readonly CVarDef<string> SelectedAuthServer = CVarDef.Create("SelectedAuthServer", "");
 
     public static readonly CVarDef<string> Fingerprint = CVarDef.Create("Fingerprint", "");
 

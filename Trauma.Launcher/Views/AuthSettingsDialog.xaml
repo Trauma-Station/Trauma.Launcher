@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Trauma.Launcher.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="100"
+        MinWidth="600" MinHeight="130"
+        Width="600" Height="250"
+        x:Class="Trauma.Launcher.Views.AuthSettingsDialog"
+        x:DataType="vm:AuthSettingsViewModel"
+        Icon="{DynamicResource WindowIcon}"
+        Title="Custom Auth Servers"
+        Padding="4"
+        WindowStartupLocation="CenterOwner">
+  <Window.Styles>
+    <Style Selector="TextBox.Duplicate /template/ Border#border">
+      <Setter Property="BorderBrush" Value="Orange" />
+    </Style>
+    <Style Selector="TextBox.Invalid /template/ Border#border">
+      <Setter Property="BorderBrush" Value="Red" />
+    </Style>
+    <Style Selector="Button.InfoButton:pointerover">
+      <Setter Property="Background" Value="{DynamicResource ThemeControlHighBrush}" />
+    </Style>
+    <Style Selector="ItemsControl.Spaced">
+      <Setter Property="ItemsPanel">
+        <ItemsPanelTemplate>
+          <StackPanel Spacing="2" />
+        </ItemsPanelTemplate>
+      </Setter>
+    </Style>
+  </Window.Styles>
+  <DockPanel>
+    <TextBlock DockPanel.Dock="Top" Text="Here you can add your own auth servers to log in with." />
+    <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Text="Do not add phishing servers or you WILL lose your account, double and triple check you have the right URLs." />
+    <TextBlock DockPanel.Dock="Top" Text="After changing auth servers, restart the launcher for them to take effect." />
+    <DockPanel Height="30" Margin="0 4 0 0" DockPanel.Dock="Bottom" LastChildFill="False">
+      <Button DockPanel.Dock="Right" Name="SaveButton" Click="Save" Content="Done" Classes="OpenLeft" />
+      <Button DockPanel.Dock="Right" Click="Cancel" Content="Cancel" Classes="OpenBoth" />
+      <Button DockPanel.Dock="Right" Command="{Binding Clear}" Content="Clear" Classes="OpenRight"
+              ToolTip.Tip="Remove all custom auth servers" />
+      <Button DockPanel.Dock="Left" Command="{Binding Add}" Classes="OpenRight" Padding="0 9 10 9" ToolTip.Tip="Add an auth server">
+        <Path Fill="{DynamicResource ThemeForegroundBrush}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Stretch="Uniform"
+              Data="M 0 2 L 2 0 L 6 4 L 10 0 L 12 2 L 8 6 L 12 10 L 10 12 L 6 8 L 2 12 L 0 10 L 4 6 L 0 2 Z">
+          <Path.RenderTransform>
+            <RotateTransform Angle="45" />
+          </Path.RenderTransform>
+        </Path>
+      </Button>
+    </DockPanel>
+    <ScrollViewer DockPanel.Dock="Top">
+      <StackPanel Spacing="2">
+        <TextBlock DockPanel.Dock="Left" Text="Custom Auth Servers" Classes="NanoHeadingSmall" />
+        <ItemsControl ItemsSource="{Binding ServerList}" Name="Servers" Classes="Spaced">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <DockPanel>
+                <Button DockPanel.Dock="Right"
+                        Margin="1 0 0 0"
+                        Classes="OpenLeft"
+                        Width="30"
+                        Padding="8 0 0 0"
+                        Command="{Binding Remove}"
+                        ToolTip.Tip="Remove">
+                  <Path Fill="{DynamicResource ThemeForegroundBrush}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Data="M 0 2 L 2 0 L 6 4 L 10 0 L 12 2 L 8 6 L 12 10 L 10 12 L 6 8 L 2 12 L 0 10 L 4 6 L 0 2 Z" />
+                </Button>
+                <TextBox Text="{Binding ServerName}"
+                         PropertyChanged="AuthServerChanged"
+                         PlaceholderText="New Auth"/>
+                <TextBox Text="{Binding AccountBaseUrl}"
+                         PropertyChanged="AuthServerChanged"
+                         PlaceholderText="https://account.example.com/Identity/Account/"/>
+                <TextBox Text="{Binding AuthUrl}"
+                         PropertyChanged="AuthServerChanged"
+                         PlaceholderText="https://auth.example.com/"/>
+              </DockPanel>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</Window>

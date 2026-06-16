@@ -1,3 +1,4 @@
+using Trauma.Launcher.Models.Data;
 using Trauma.Launcher.Utility;
 
 namespace Trauma.Launcher;
@@ -26,14 +27,15 @@ public static class ConfigConstants
     public const int LauncherCommandsRedialWaitTimeout = 1000;
 
     // TODO: ed25519 auth
-    public static readonly UrlFallbackSet AuthUrl = new(["https://auth.spacestation14.com/", "https://auth.fallback.spacestation14.com/"]);
-    public static readonly UrlFallbackSet[] DefaultHubUrls = [new(["https://hub.spacestation14.com/", "https://hub.fallback.spacestation14.com/"])];
+    public static readonly AuthServer[] DefaultAuthServers = [
+        new("SS14", "https://account.spacestation14.com/Identity/Account/", "https://auth.spacestation14.com/"),
+        new("Wizden", "https://account.playss14.com/Identity/Account/", "https://auth.playss14.com/")
+    ];
+    public static readonly UrlFallbackSet[] DefaultHubUrls = [
+        new(["https://hub.spacestation14.com/", "https://hub.fallback.spacestation14.com/"]),
+        new(["https://hub.playss14.com/"])
+    ];
     public const string DiscordUrl = "https://discord.traumastation.com/";
-    // TODO: kill
-    public const string AccountBaseUrl = "https://account.spacestation14.com/Identity/Account/";
-    public const string AccountManagementUrl = $"{AccountBaseUrl}Manage";
-    public const string AccountRegisterUrl = $"{AccountBaseUrl}Register";
-    public const string AccountResendConfirmationUrl = $"{AccountBaseUrl}ResendEmailConfirmation";
     public const string WebsiteUrl = "https://wiki.traumastation.com";
     public const string DownloadUrl = "https://traumastation.com/download";
     public const string NewsFeedUrl = "https://news.traumastation.com/index.xml";
@@ -73,11 +75,4 @@ public static class ConfigConstants
     public static readonly UrlFallbackSet UrlAssetsBase = LauncherDataBaseUrl + "assets/";
 
     public const string FallbackUsername = "JoeGenero";
-
-    static ConfigConstants()
-    {
-        var envVarAuthUrl = Environment.GetEnvironmentVariable("SS14_LAUNCHER_OVERRIDE_AUTH");
-        if (!string.IsNullOrEmpty(envVarAuthUrl))
-            AuthUrl = new UrlFallbackSet([envVarAuthUrl]);
-    }
 }

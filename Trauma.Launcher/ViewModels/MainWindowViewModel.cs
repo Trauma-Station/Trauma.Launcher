@@ -67,7 +67,6 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IErrorOverlayOw
         this.WhenAnyValue(x => x._loginMgr.ActiveAccount)
             .Subscribe(s =>
             {
-                this.RaisePropertyChanged(nameof(Username));
                 this.RaisePropertyChanged(nameof(LoggedIn));
             });
 
@@ -97,7 +96,6 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IErrorOverlayOw
     public IReadOnlyList<MainWindowTabViewModel> Tabs { get; }
 
     public bool LoggedIn => _loginMgr.ActiveAccount != null;
-    public string? Username => _loginMgr.ActiveAccount?.Username;
     public bool AccountDropDownVisible => _loginMgr.Logins.Count != 0;
 
     public AccountDropDownViewModel AccountDropDown { get; }

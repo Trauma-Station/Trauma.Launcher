@@ -1,8 +1,12 @@
-﻿CREATE TABLE Login (
-    UserId TEXT PRIMARY KEY NOT NULL, -- GUID
+CREATE TABLE Login (
+    AuthServer Text NOT NULL,
+    UserId TEXT NOT NULL, -- GUID
+    -- Name of the auth server used
     UserName TEXT NOT NULL,
     Token TEXT NOT NULL,
-    Expires DATETIME NOT NULL
+    Expires DATETIME NOT NULL,
+
+    PRIMARY KEY (AuthServer, UserId)
 );
 
 CREATE TABLE Config (

@@ -23,8 +23,6 @@ public sealed partial class AccountDropDownViewModel : ViewModelBase
 
     public ReadOnlyObservableCollection<AvailableAccountViewModel> Accounts => _accounts;
 
-    public bool EnableMultiAccounts => _cfg.ActuallyMultiAccounts;
-
     public AccountDropDownViewModel(MainWindowViewModel mainVm)
     {
         _mainVm = mainVm;
@@ -65,8 +63,9 @@ public sealed partial class AccountDropDownViewModel : ViewModelBase
         return l => l != selected;
     }
 
-    public string LoginText => _loginMgr.ActiveAccount?.Username ??
-                               (EnableMultiAccounts ? _loc.GetString("account-drop-down-none-selected") : _loc.GetString("account-drop-down-not-logged-in"));
+    public string LoginText => _loginMgr.ActiveAccount is { } account
+        ? $"{account.Username} [{account.AuthServer}]"
+        : _loc.GetString("account-drop-down-none-selected");
 
     public string LogoutText => _cfg.Logins.Count == 1
         ? _loc.GetString("account-drop-down-log-out")
@@ -85,10 +84,11 @@ public sealed partial class AccountDropDownViewModel : ViewModelBase
     {
         IsDropDownOpen = false;
 
-        if (_loginMgr.ActiveAccount != null)
+        if (_loginMgr.ActiveAccount is { } account)
         {
-            await _authApi.LogoutTokenAsync(_loginMgr.ActiveAccount.LoginInfo.Token.Token);
-            _cfg.RemoveLogin(_loginMgr.ActiveAccount.LoginInfo);
+            if (_cfg.GetAuthServer(account.AuthServer) is { } server)
+                await _authApi.LogoutTokenAsync(server, account.LoginInfo.Token.Token);
+            _cfg.RemoveLogin(account.LoginInfo);
         }
     }
 
@@ -113,9 +113,10 @@ public sealed partial class AccountDropDownViewModel : ViewModelBase
     }
 }
 
-public sealed class AvailableAccountViewModel : ViewModelBase
+public sealed partial class AvailableAccountViewModel : ViewModelBase
 {
-    public extern string StatusText { [ObservableAsProperty] get; }
+    [ObservableAsProperty]
+    private string _statusText = "!!!";
 
     public LoggedInAccount Account { get; }
 
@@ -123,12 +124,12 @@ public sealed class AvailableAccountViewModel : ViewModelBase
     {
         Account = account;
 
-        this.WhenAnyValue<AvailableAccountViewModel, AccountLoginStatus, string>(p => p.Account.Status, p => p.Account.Username)
+        _statusTextHelper = this.WhenAnyValue<AvailableAccountViewModel, AccountLoginStatus, string, string>(p => p.Account.Status, p => p.Account.Username, p => p.Account.AuthServer)
             .Select(p => p.Item1 switch
             {
-                AccountLoginStatus.Available => $"{p.Item2}",
-                AccountLoginStatus.Expired => $"{p.Item2} (!)",
-                _ => $"{p.Item2} (?)"
+                AccountLoginStatus.Available => $"{p.Item2} [{p.Item3}]",
+                AccountLoginStatus.Expired => $"{p.Item2} (!) [{p.Item3}]",
+                _ => $"{p.Item2} (?) [{p.Item3}]"
             })
             .ToProperty(this, x => x.StatusText);
     }

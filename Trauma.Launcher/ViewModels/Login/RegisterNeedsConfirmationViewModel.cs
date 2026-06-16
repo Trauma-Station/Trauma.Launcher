@@ -17,6 +17,7 @@ public sealed partial class RegisterNeedsConfirmationViewModel : BaseLoginViewMo
     private readonly string _loginPassword;
     private readonly LoginManager _loginMgr;
     private readonly DataManager _dataManager;
+    private readonly AuthServer _server;
 
     public bool ConfirmButtonEnabled => TimeoutSecondsLeft == 0;
 
@@ -38,7 +39,8 @@ public sealed partial class RegisterNeedsConfirmationViewModel : BaseLoginViewMo
 
     public RegisterNeedsConfirmationViewModel(
         MainWindowLoginViewModel parentVm,
-        AuthApi authApi, string username, string password, LoginManager loginMgr, DataManager dataManager)
+        AuthApi authApi, string username, string password, LoginManager loginMgr, DataManager dataManager,
+        AuthServer server)
         : base(parentVm)
     {
         BusyText = _loc.GetString("login-confirmation-busy");
@@ -48,6 +50,7 @@ public sealed partial class RegisterNeedsConfirmationViewModel : BaseLoginViewMo
         _loginPassword = password;
         _loginMgr = loginMgr;
         _dataManager = dataManager;
+        _server = server;
 
         this.WhenAnyValue(p => p.TimeoutSecondsLeft)
             .Subscribe(_ =>
@@ -79,9 +82,9 @@ public sealed partial class RegisterNeedsConfirmationViewModel : BaseLoginViewMo
         try
         {
             var request = new AuthApi.AuthenticateRequest(_loginUsername, _loginPassword);
-            var resp = await _authApi.AuthenticateAsync(request);
+            var resp = await _authApi.AuthenticateAsync(_server, request);
 
-            await LoginViewModel.DoLogin(this, request, resp, _loginMgr, _authApi);
+            await LoginViewModel.DoLogin(this, request, resp, _loginMgr, _authApi, _server);
 
             _dataManager.CommitConfig();
         }
@@ -89,5 +92,10 @@ public sealed partial class RegisterNeedsConfirmationViewModel : BaseLoginViewMo
         {
             Busy = false;
         }
+    }
+
+    public void SwitchToRegister()
+    {
+        ParentVM.SwitchToRegister();
     }
 }

@@ -338,15 +338,19 @@ public sealed partial class Connector : ReactiveObject
     {
         var cVars = new List<(string, string)>();
 
-        if (info != null && info.AuthInformation.Mode != AuthMode.Disabled && _loginManager.ActiveAccount != null)
+        if (info != null && info.AuthInformation.Mode != AuthMode.Disabled && _loginManager.ActiveAccount is { } account)
         {
-            var account = _loginManager.ActiveAccount;
+            if (_cfg.GetAuthServer(account.AuthServer) is not { } authServer)
+            {
+                Log.Error("Tried to connect using unknown auth server {server}!", account.AuthServer);
+                return null;
+            }
 
             // TODO: pubkey auth mode
             cVars.Add(("ROBUST_AUTH_TOKEN", account.LoginInfo.Token.Token));
             cVars.Add(("ROBUST_AUTH_USERID", account.LoginInfo.UserId.ToString()));
             cVars.Add(("ROBUST_AUTH_PUBKEY", info.AuthInformation.PublicKey));
-            cVars.Add(("ROBUST_AUTH_SERVER", ConfigConstants.AuthUrl.GetMostSuccessfulUrl()));
+            cVars.Add(("ROBUST_AUTH_SERVER", authServer.AuthUrl));
         }
 
         try

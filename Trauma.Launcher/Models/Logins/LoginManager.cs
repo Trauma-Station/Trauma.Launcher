@@ -24,23 +24,18 @@ public sealed class LoginManager : ReactiveObject
 
     private IDisposable? _timer;
 
-    private Guid? _activeLoginId;
+    private (string, Guid)? _activeLoginId;
 
-    private readonly IObservableCache<ActiveLoginData, Guid> _logins;
+    private readonly IObservableCache<ActiveLoginData, (string, Guid)> _logins;
 
-    public Guid? ActiveAccountId
+    public (string, Guid)? ActiveAccountId
     {
         get => _activeLoginId;
         set
         {
-            if (value != null)
+            if (value is { } pair && !_logins.Lookup(pair).HasValue)
             {
-                var lookup = _logins.Lookup(value.Value);
-
-                if (!lookup.HasValue)
-                {
-                    throw new ArgumentException("We do not have a login with that ID.");
-                }
+                throw new ArgumentException("We do not have a login with that ID.");
             }
 
             this.RaiseAndSetIfChanged(ref _activeLoginId, value);
@@ -51,11 +46,11 @@ public sealed class LoginManager : ReactiveObject
 
     public LoggedInAccount? ActiveAccount
     {
-        get => _activeLoginId == null ? null : _logins.Lookup(_activeLoginId.Value).Value;
-        set => ActiveAccountId = value?.UserId;
+        get => _activeLoginId is { } pair ? _logins.Lookup(pair).Value : null;
+        set => ActiveAccountId = value is { } account ? (account.AuthServer, account.UserId) : null;
     }
 
-    public IObservableCache<LoggedInAccount, Guid> Logins { get; }
+    public IObservableCache<LoggedInAccount, (string, Guid)> Logins { get; }
 
     public LoginManager(DataManager cfg, AuthApi authApi)
     {
@@ -67,7 +62,7 @@ public sealed class LoginManager : ReactiveObject
             .Transform(p => new ActiveLoginData(p))
             .OnItemRemoved(p =>
             {
-                if (p.LoginInfo.UserId == _activeLoginId)
+                if (p.LoginInfo.Matches(_activeLoginId))
                 {
                     ActiveAccount = null;
                 }
@@ -76,7 +71,7 @@ public sealed class LoginManager : ReactiveObject
 
         Logins = _logins
             .Connect()
-            .Transform((data, guid) => (LoggedInAccount) data)
+            .Transform((data, _) => (LoggedInAccount) data)
             .AsObservableCache();
     }
 
@@ -143,7 +138,7 @@ public sealed class LoginManager : ReactiveObject
     {
         _cfg.AddLogin(info);
 
-        _logins.Lookup(info.UserId).Value.SetStatus(AccountLoginStatus.Available);
+        _logins.Lookup((info.AuthServer, info.UserId)).Value.SetStatus(AccountLoginStatus.Available);
     }
 
     public void UpdateToNewToken(LoggedInAccount account, LoginToken token)
@@ -161,12 +156,18 @@ public sealed class LoginManager : ReactiveObject
 
     private async Task UpdateSingleAccountStatus(ActiveLoginData data)
     {
+        if (_cfg.GetAuthServer(data.AuthServer) is not { } server)
+        {
+            Log.Error("Nonexistent auth server named {server} found in active login!", data.AuthServer);
+            return;
+        }
+
         if (data.LoginInfo.Token.ShouldRefresh())
         {
-            Log.Debug("Refreshing token for {login}", data.LoginInfo);
+            Log.Debug("Refreshing token for {server}:{login}", server.Name, data.LoginInfo);
             // If we need to refresh the token anyways we'll just
             // implicitly do the "is it still valid" with the refresh request.
-            var newTokenHopefully = await _authApi.RefreshTokenAsync(data.LoginInfo.Token.Token);
+            var newTokenHopefully = await _authApi.RefreshTokenAsync(server, data.LoginInfo.Token.Token);
             if (newTokenHopefully == null)
             {
                 // Token expired or whatever?
@@ -182,7 +183,7 @@ public sealed class LoginManager : ReactiveObject
         }
         else if (data.Status == AccountLoginStatus.Unsure)
         {
-            var valid = await _authApi.CheckTokenAsync(data.LoginInfo.Token.Token);
+            var valid = await _authApi.CheckTokenAsync(server, data.LoginInfo.Token.Token);
             Log.Debug("Token for {login} still valid? {valid}", data.LoginInfo, valid);
             data.SetStatus(valid ? AccountLoginStatus.Available : AccountLoginStatus.Expired);
         }

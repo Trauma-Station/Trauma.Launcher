@@ -1,11 +1,13 @@
 using Trauma.Launcher.Api;
 using Trauma.Launcher.Localization;
+using Trauma.Launcher.Models.Data;
 
 namespace Trauma.Launcher.ViewModels.Login;
 
 public sealed partial class ForgotPasswordViewModel : BaseLoginViewModel
 {
     private readonly AuthApi _authApi;
+    private readonly AuthServer _server;
     private readonly LocalizationManager _loc = LocalizationManager.Instance;
 
     [Reactive] public string _editingEmail = "";
@@ -14,10 +16,12 @@ public sealed partial class ForgotPasswordViewModel : BaseLoginViewModel
 
     public ForgotPasswordViewModel(
         MainWindowLoginViewModel parentVM,
-        AuthApi authApi)
+        AuthApi authApi,
+        AuthServer server)
         : base(parentVM)
     {
         _authApi = authApi;
+        _server = server;
     }
 
     public async void SubmitPressed()
@@ -29,7 +33,7 @@ public sealed partial class ForgotPasswordViewModel : BaseLoginViewModel
         try
         {
             BusyText = "Sending email...";
-            var errors = await _authApi.ForgotPasswordAsync(EditingEmail);
+            var errors = await _authApi.ForgotPasswordAsync(_server, EditingEmail);
 
             _errored = errors != null;
 

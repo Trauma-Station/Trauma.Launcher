@@ -12,6 +12,10 @@ public partial class LoginView : UserControl
 
         NameBox.KeyDown += InputBoxOnKeyDown;
         PasswordBox.KeyDown += InputBoxOnKeyDown;
+
+        this.WhenAnyValue(v => v.DataContext)
+            .Subscribe(vm => ((LoginViewModel) vm!).WhenAnyValue(vm => vm.Cfg)
+                .Subscribe(cfg => AuthServerSelector.Update(cfg)));
     }
 
     private void InputBoxOnKeyDown(object? sender, KeyEventArgs args)

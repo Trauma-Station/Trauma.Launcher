@@ -1,18 +1,21 @@
 using Trauma.Launcher.Api;
+using Trauma.Launcher.Models.Data;
 
 namespace Trauma.Launcher.ViewModels.Login;
 
 public sealed partial class ResendConfirmationViewModel : BaseLoginViewModel
 {
     private readonly AuthApi _authApi;
+    private readonly AuthServer _server;
 
     [Reactive] public partial string EditingEmail { get; set; } = "";
 
     private bool _errored;
 
-    public ResendConfirmationViewModel(MainWindowLoginViewModel parentVM, AuthApi authApi) : base(parentVM)
+    public ResendConfirmationViewModel(MainWindowLoginViewModel parentVM, AuthApi authApi, AuthServer server) : base(parentVM)
     {
         _authApi = authApi;
+        _server = server;
     }
 
     public async void SubmitPressed()
@@ -24,7 +27,7 @@ public sealed partial class ResendConfirmationViewModel : BaseLoginViewModel
         try
         {
             BusyText = "Resending email...";
-            var errors = await _authApi.ResendConfirmationAsync(EditingEmail);
+            var errors = await _authApi.ResendConfirmationAsync(_server, EditingEmail);
 
             _errored = errors != null;
 

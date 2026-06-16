@@ -39,13 +39,14 @@ public sealed class DataManager : ReactiveObject
 
     private readonly SourceCache<FavoriteServer, string> _favoriteServers = new(f => f.Address);
 
-    private readonly SourceCache<LoginInfo, Guid> _logins = new(l => l.UserId);
+    private readonly SourceCache<LoginInfo, (string, Guid)> _logins = new(l => (l.AuthServer, l.UserId));
 
     // When using dynamic engine management, this is used to keep track of installed engine versions.
     private readonly SourceCache<InstalledEngineVersion, EngineVersion> _engineInstallations = new(v => new(v.Engine, v.Version));
 
     private readonly HashSet<ServerFilter> _filters = new();
     private readonly List<Hub> _hubs = new();
+    private readonly List<AuthServer> _authServers = new();
 
     private readonly Dictionary<string, CVarEntry> _configEntries = new();
 
@@ -71,6 +72,7 @@ public sealed class DataManager : ReactiveObject
     {
         Filters = new ServerFilterCollection(this);
         Hubs = new HubCollection(this);
+        AuthServers = new AuthServerCollection(this);
         // Set up subscriptions to listen for when the list-data (e.g. logins) changes in any way.
         // All these operations match directly SQL UPDATE/INSERT/DELETE.
 
@@ -100,43 +102,95 @@ public sealed class DataManager : ReactiveObject
 
     public Guid Fingerprint => Guid.Parse(GetCVar(CVars.Fingerprint));
 
-    public Guid? SelectedLoginId
+    /// <summary>
+    /// Selected auth server and guid to use when connecting to servers.
+    /// Need both since theres nothing stopping multiple auth servers from using the same guids, its just a number.
+    /// </summary>
+    public (string, Guid)? SelectedLoginId
     {
         get
         {
+            var server = GetCVar(CVars.SelectedAuthServer);
+            if (server == "")
+                return null;
+
             var value = GetCVar(CVars.SelectedLogin);
             if (value == "")
                 return null;
 
-            return Guid.Parse(value);
+            return (server, Guid.Parse(value));
         }
         set
         {
-            if (value != null && !_logins.Lookup(value.Value).HasValue)
+            if (value is { } pair)
             {
-                throw new ArgumentException("We are not logged in for that user ID.");
+                var (server, guid) = pair;
+                if (!_logins.Lookup(pair).HasValue)
+                    throw new ArgumentException($"We are not logged in for {server}:{guid}");
+
+                SetCVar(CVars.SelectedAuthServer, server);
+                SetCVar(CVars.SelectedLogin, guid.ToString());
+            }
+            else
+            {
+                SetCVar(CVars.SelectedAuthServer, "");
+                SetCVar(CVars.SelectedLogin, "");
             }
 
-            SetCVar(CVars.SelectedLogin, value.ToString()!);
             CommitConfig();
         }
     }
 
     public IObservableCache<FavoriteServer, string> FavoriteServers => _favoriteServers;
-    public IObservableCache<LoginInfo, Guid> Logins => _logins;
+    public IObservableCache<LoginInfo, (string, Guid)> Logins => _logins;
     public IObservableCache<InstalledEngineVersion, EngineVersion> EngineInstallations => _engineInstallations;
     public IEnumerable<InstalledEngineModule> EngineModules => _modules;
     public ICollection<ServerFilter> Filters { get; }
     public ICollection<Hub> Hubs { get; }
+    public ICollection<AuthServer> AuthServers { get; }
 
     public bool HasCustomHubs => Hubs.Count > 0;
 
-    public bool ActuallyMultiAccounts =>
-#if DEBUG
-        true;
-#else
-            GetCVar(CVars.MultiAccounts);
-#endif
+    /// <summary>
+    /// Find an auth server that has a given name, checking user servers then built in.
+    /// </summary>
+    public AuthServer? GetAuthServer(string name)
+    {
+        foreach (var server in _authServers)
+        {
+            if (server.Name == name)
+                return server;
+        }
+
+        foreach (var server in ConfigConstants.DefaultAuthServers)
+        {
+            if (server.Name == name)
+                return server;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Get the current auth server if logged in, null otherwise.
+    /// </summary>
+    public AuthServer? CurrentAuthServer
+        => SelectedLoginId?.Item1 is { } name ? GetAuthServer(name) : null;
+
+    /// <summary>
+    /// Get every auth server: built in first then custom ones.
+    /// </summary>
+    public IEnumerable<AuthServer> AllAuthServers()
+    {
+        foreach (var server in ConfigConstants.DefaultAuthServers)
+        {
+            yield return server;
+        }
+        foreach (var server in _authServers)
+        {
+            yield return server;
+        }
+    }
 
     public void AddFavoriteServer(FavoriteServer server)
     {
@@ -184,7 +238,7 @@ public sealed class DataManager : ReactiveObject
 
     public void AddLogin(LoginInfo login)
     {
-        if (_logins.Lookup(login.UserId).HasValue)
+        if (_logins.Lookup((login.AuthServer, login.UserId)).HasValue)
         {
             throw new ArgumentException("A login with that UID already exists.");
         }
@@ -196,10 +250,8 @@ public sealed class DataManager : ReactiveObject
     {
         _logins.Remove(loginInfo);
 
-        if (loginInfo.UserId == SelectedLoginId)
-        {
+        if (loginInfo.Matches(SelectedLoginId))
             SelectedLoginId = null;
-        }
     }
 
     /// <summary>
@@ -211,6 +263,19 @@ public sealed class DataManager : ReactiveObject
         foreach (var hub in hubs)
         {
             Hubs.Add(hub);
+        }
+        CommitConfig();
+    }
+
+    /// <summary>
+    /// Overwrites custom auth servers in database with a new list.
+    /// </summary>
+    public void SetAuthServers(List<AuthServer> servers)
+    {
+        AuthServers.Clear();
+        foreach (var server in servers)
+        {
+            AuthServers.Add(server);
         }
         CommitConfig();
     }
@@ -287,10 +352,11 @@ public sealed class DataManager : ReactiveObject
     {
         // Load logins.
         _logins.AddOrUpdate(
-            sqliteConnection.Query<(Guid id, string name, string token, DateTimeOffset expires)>(
-                    "SELECT UserId, UserName, Token, Expires FROM Login")
+            sqliteConnection.Query<(string server, Guid id, string name, string token, DateTimeOffset expires)>(
+                    "SELECT AuthServer, UserId, UserName, Token, Expires FROM Login")
                 .Select(l => new LoginInfo
                 {
+                    AuthServer = l.server,
                     UserId = l.id,
                     Username = l.name,
                     Token = new LoginToken(l.token, l.expires)
@@ -327,7 +393,8 @@ public sealed class DataManager : ReactiveObject
         }
 
         _filters.UnionWith(sqliteConnection.Query<ServerFilter>("SELECT Category, Data FROM ServerFilter"));
-        _hubs.AddRange(sqliteConnection.Query<Hub>("SELECT Address,Priority FROM Hub"));
+        _hubs.AddRange(sqliteConnection.Query<Hub>("SELECT Address, Priority FROM Hub"));
+        _authServers.AddRange(sqliteConnection.Query<AuthServer>("SELECT Name, AccountBaseUrl, AuthUrl FROM AuthServer"));
 
         foreach (var (identifier, version) in sqliteConnection.Query<(string, string)>(
                      "SELECT Identifier, Version FROM AcceptedPrivacyPolicy"))
@@ -447,6 +514,7 @@ public sealed class DataManager : ReactiveObject
         var data = new
         {
             login.UserId,
+            AuthServer = login.AuthServer,
             UserName = login.Username,
             login.Token.Token,
             Expires = login.Token.ExpireTime
@@ -455,9 +523,9 @@ public sealed class DataManager : ReactiveObject
         {
             con.Execute(reason switch
                 {
-                    ChangeReason.Add => "INSERT INTO Login VALUES (@UserId, @UserName, @Token, @Expires)",
+                    ChangeReason.Add => "INSERT INTO Login VALUES (@AuthServer, @UserId, @UserName, @Token, @Expires)",
                     ChangeReason.Update =>
-                        "UPDATE Login SET UserName = @UserName, Token = @Token, Expires = @Expires WHERE UserId = @UserId",
+                        "UPDATE Login SET AuthServer = @AuthServer, UserName = @UserName, Token = @Token, Expires = @Expires WHERE UserId = @UserId",
                     ChangeReason.Remove => "DELETE FROM Login WHERE UserId = @UserId",
                     _ => throw new ArgumentOutOfRangeException(nameof(reason), reason, null)
                 },
@@ -628,7 +696,7 @@ public sealed class DataManager : ReactiveObject
 
             _parent.AddDbCommand(cmd => cmd.Execute(
                 "DELETE FROM Hub WHERE Address = @Address",
-                new { item.Address, item.Priority }));
+                new { item.Address }));
 
             return true;
         }
@@ -636,6 +704,53 @@ public sealed class DataManager : ReactiveObject
         public void CopyTo(Hub[] array, int arrayIndex) => _parent._hubs.CopyTo(array, arrayIndex);
         public bool Contains(Hub item) => _parent._hubs.Contains(item);
         public int Count => _parent._hubs.Count;
+        public bool IsReadOnly => false;
+    }
+
+    private sealed class AuthServerCollection(DataManager parent) : ICollection<AuthServer>
+    {
+        private readonly DataManager _parent = parent;
+
+        public IEnumerator<AuthServer> GetEnumerator() => _parent._authServers.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public void Add(AuthServer item)
+        {
+            foreach (var server in _parent._authServers)
+            {
+                if (server.Name == item.Name)
+                    return; // no duplicates big bad
+            }
+
+            _parent._authServers.Add(item);
+
+            _parent.AddDbCommand(cmd => cmd.Execute(
+                "INSERT INTO AuthServer (Name, AccountBaseUrl, AuthUrl) VALUES (@Name, @AccountBaseUrl, @AuthUrl)",
+                new { item.Name, item.AccountBaseUrl, item.AuthUrl }));
+        }
+
+        public void Clear()
+        {
+            _parent._authServers.Clear();
+
+            _parent.AddDbCommand(cmd => cmd.Execute("DELETE FROM AuthServer"));
+        }
+
+        public bool Remove(AuthServer item)
+        {
+            if (!_parent._authServers.Remove(item))
+                return false;
+
+            _parent.AddDbCommand(cmd => cmd.Execute(
+                "DELETE FROM AuthServer WHERE Name = @Name",
+                new { item.Name }));
+
+            return true;
+        }
+
+        public void CopyTo(AuthServer[] array, int arrayIndex) => _parent._authServers.CopyTo(array, arrayIndex);
+        public bool Contains(AuthServer item) => _parent._authServers.Contains(item);
+        public int Count => _parent._authServers.Count;
         public bool IsReadOnly => false;
     }
 }
