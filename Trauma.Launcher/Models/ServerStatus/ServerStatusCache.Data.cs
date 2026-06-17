@@ -7,6 +7,7 @@ public sealed class ServerStatusData : ObservableObject, IServerStatusData
 {
     private string? _name;
     private string? _desc;
+    private string? _engine;
     private TimeSpan? _ping;
     private int _playerCount;
     private int _softMaxPlayerCount;
@@ -41,6 +42,12 @@ public sealed class ServerStatusData : ObservableObject, IServerStatusData
     {
         get => _desc;
         set => SetProperty(ref _desc, value);
+    }
+
+    public string? Engine
+    {
+        get => _engine;
+        set => SetProperty(ref _engine, value);
     }
 
     // BUG: This ping stat is completely wrong currently.

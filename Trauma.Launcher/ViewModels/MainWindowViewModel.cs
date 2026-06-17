@@ -198,15 +198,13 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IErrorOverlayOw
 
     public void DismissIntelDegradationPressed()
     {
-        Cfg.SetCVar(CVars.HasDismissedIntelDegradation, true);
-        Cfg.CommitConfig();
+        Cfg.SetCVar(CVars.HasDismissedIntelDegradation, true, commit: true);
         this.RaisePropertyChanged(nameof(ShouldShowIntelDegradationWarning));
     }
 
     public void DismissAppleSiliconRosettaPressed()
     {
-        Cfg.SetCVar(CVars.HasDismissedRosettaWarning, true);
-        Cfg.CommitConfig();
+        Cfg.SetCVar(CVars.HasDismissedRosettaWarning, true, commit: true);
         this.RaisePropertyChanged(nameof(ShouldShowRosettaWarning));
     }
 

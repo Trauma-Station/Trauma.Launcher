@@ -96,6 +96,11 @@ public static class CVars
     public static readonly CVarDef<bool> OverrideAssets = CVarDef.Create("OverrideAssets", true);
 
     /// <summary>
+    /// Whether to show the banner gif at the top of the launcher.
+    /// </summary>
+    public static readonly CVarDef<bool> ShowBanner = CVarDef.Create("ShowBanner", true);
+
+    /// <summary>
     /// Stores the minimum player count value used by the "minimum player count" filter.
     /// </summary>
     /// <seealso cref="ServerFilter.PlayerCountMin"/>

@@ -190,6 +190,7 @@ public sealed class ServerStatusCache : IServerSource
 
         data.StatusInfo = ServerStatusInfoCode.Fetched;
         data.Description = info.Desc;
+        data.Engine = info.Engine;
         data.Links = info.Links;
     }
 

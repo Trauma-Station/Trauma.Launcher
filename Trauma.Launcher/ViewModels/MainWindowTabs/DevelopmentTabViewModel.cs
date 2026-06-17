@@ -28,30 +28,18 @@ public sealed class DevelopmentTabViewModel : MainWindowTabViewModel
     public bool DisableSigning
     {
         get => Cfg.GetCVar(CVars.DisableSigning);
-        set
-        {
-            Cfg.SetCVar(CVars.DisableSigning, value);
-            Cfg.CommitConfig();
-        }
+        set => Cfg.SetCVar(CVars.DisableSigning, value, commit: true);
     }
 
     public bool EngineOverrideEnabled
     {
         get => Cfg.GetCVar(CVars.EngineOverrideEnabled);
-        set
-        {
-            Cfg.SetCVar(CVars.EngineOverrideEnabled, value);
-            Cfg.CommitConfig();
-        }
+        set => Cfg.SetCVar(CVars.EngineOverrideEnabled, value, commit: true);
     }
 
     public string EngineOverridePath
     {
         get => Cfg.GetCVar(CVars.EngineOverridePath);
-        set
-        {
-            Cfg.SetCVar(CVars.EngineOverridePath, value);
-            Cfg.CommitConfig();
-        }
+        set => Cfg.SetCVar(CVars.EngineOverridePath, value, commit: true);
     }
 }

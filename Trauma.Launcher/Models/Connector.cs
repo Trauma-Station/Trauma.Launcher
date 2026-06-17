@@ -843,7 +843,7 @@ public sealed partial class Connector : ReactiveObject
 public sealed record ContentBundleMetadata(
     [property: JsonPropertyName("server_gc")]
     bool? ServerGC,
-    [property: JsonPropertyName("engine")]
+    [property: JsonPropertyName("engine_type")]
     string? Engine,
     [property: JsonPropertyName("engine_version")]
     string EngineVersion,

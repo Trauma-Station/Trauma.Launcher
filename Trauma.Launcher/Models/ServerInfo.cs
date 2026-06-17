@@ -17,6 +17,9 @@ public sealed class ServerInfo
     [JsonPropertyName("links")] public ServerInfoLink[]? Links { get; set; }
 
     [JsonPropertyName("privacy_policy")] public ServerPrivacyPolicyInfo? PrivacyPolicy { get; set; }
+
+    [JsonPropertyName("engine-type")]
+    public string? Engine { get; set; }
 }
 
 public sealed record ServerInfoLink(string Name, string? Icon, string Url);
@@ -40,7 +43,7 @@ public sealed class ServerBuildInformation
     [JsonInclude, JsonPropertyName("manifest_download_url")]
     public string? ManifestDownloadUrl;
 
-    [JsonInclude, JsonPropertyName("engine")]
+    [JsonInclude, JsonPropertyName("engine_type")]
     public string Engine = ConfigConstants.DefaultEngine;
 
     [JsonInclude, JsonPropertyName("engine_version")]

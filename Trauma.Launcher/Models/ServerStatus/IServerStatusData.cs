@@ -19,6 +19,11 @@ public interface IServerStatusData : INotifyPropertyChanged
 
     string? Description { get; set; }
 
+    /// <summary>
+    /// Name of the engine this server is using.
+    /// </summary>
+    string? Engine { get; set; }
+
     ServerStatusCode Status { get; set; }
     ServerStatusInfoCode StatusInfo { get; set; }
 

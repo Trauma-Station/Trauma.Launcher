@@ -567,7 +567,7 @@ public sealed class DataManager : ReactiveObject
         return (CVarEntry<T>)_configEntries[cVar.Name];
     }
 
-    public void SetCVar<T>([ValueProvider("Trauma.Launcher.Models.Data.CVars")] CVarDef<T> cVar, T value)
+    public void SetCVar<T>([ValueProvider("Trauma.Launcher.Models.Data.CVars")] CVarDef<T> cVar, T value, bool commit = false)
     {
         var name = cVar.Name;
         var entry = (CVarEntry<T>)_configEntries[cVar.Name];
@@ -584,6 +584,9 @@ public sealed class DataManager : ReactiveObject
                 Key = name,
                 Value = value
             }));
+
+        if (commit)
+            CommitConfig();
     }
 
     private abstract class CVarEntry

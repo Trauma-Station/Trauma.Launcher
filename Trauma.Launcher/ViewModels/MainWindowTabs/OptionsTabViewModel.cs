@@ -32,31 +32,25 @@ public sealed class OptionsTabViewModel : MainWindowTabViewModel
     public bool CompatMode
     {
         get => Cfg.GetCVar(CVars.CompatMode);
-        set
-        {
-            Cfg.SetCVar(CVars.CompatMode, value);
-            Cfg.CommitConfig();
-        }
+        set => Cfg.SetCVar(CVars.CompatMode, value, commit: true);
     }
 
     public bool LogLauncherVerbose
     {
         get => Cfg.GetCVar(CVars.LogLauncherVerbose);
-        set
-        {
-            Cfg.SetCVar(CVars.LogLauncherVerbose, value);
-            Cfg.CommitConfig();
-        }
+        set => Cfg.SetCVar(CVars.LogLauncherVerbose, value, commit: true);
     }
 
     public bool OverrideAssets
     {
         get => Cfg.GetCVar(CVars.OverrideAssets);
-        set
-        {
-            Cfg.SetCVar(CVars.OverrideAssets, value);
-            Cfg.CommitConfig();
-        }
+        set => Cfg.SetCVar(CVars.OverrideAssets, value, commit: true);
+    }
+
+    public bool ShowBanner
+    {
+        get => Cfg.GetCVar(CVars.ShowBanner);
+        set => Cfg.SetCVar(CVars.ShowBanner, value, commit: true);
     }
 
     public void ClearEngines()
@@ -65,9 +59,7 @@ public sealed class OptionsTabViewModel : MainWindowTabViewModel
     }
 
     public async Task<bool> ClearServerContent()
-    {
-        return await _contentManager.ClearAll();
-    }
+        => await _contentManager.ClearAll();
 
     public void OpenLogDirectory()
     {
