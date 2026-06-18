@@ -7,7 +7,7 @@ namespace SS15.Launcher;
 /// </summary>
 public static class LauncherPaths
 {
-    public static readonly string AppDataPath = Path.Combine("Trauma Station", GetAppDataName());
+    public static readonly string AppDataPath = Path.Combine("Space Station 15", GetAppDataName());
     public static readonly string EngineInstallationsDirName = "engines";
     public static readonly string EngineModulesDirName = "modules";
     public static readonly string ServerContentDirName = "server content";
