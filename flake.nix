@@ -1,5 +1,5 @@
 {
-  description = "Flake providing a package for the Trauma Station Launcher.";
+  description = "Flake providing a package for the Space Station 15 Launcher.";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 

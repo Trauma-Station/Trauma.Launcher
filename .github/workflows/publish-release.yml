@@ -20,14 +20,14 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Publish bootstrap
-      working-directory: Trauma.Launcher.Bootstrap
+      working-directory: SS15.Launcher.Bootstrap
       run: dotnet publish -r win-x64
 
     - uses: actions/upload-artifact@v4
       with:
         name: "bootstrap"
         retention-days: 1
-        path: "Trauma.Launcher.Bootstrap/bin/Release/net10.0-windows/win-x64/publish/Trauma Station Launcher.exe"
+        path: "SS15.Launcher.Bootstrap/bin/Release/net10.0-windows/win-x64/publish/Space Station 15 Launcher.exe"
 
   build:
     runs-on: ubuntu-latest
@@ -68,8 +68,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./Trauma.Launcher_Linux.zip
-        asset_name: Trauma.Launcher_Linux.zip
+        asset_path: ./SS15.Launcher_Linux.zip
+        asset_name: SS15.Launcher_Linux.zip
         asset_content_type: application/zip
 
     # Upload Windows
@@ -79,8 +79,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./Trauma.Launcher_Windows.zip
-        asset_name: Trauma.Launcher_Windows.zip
+        asset_path: ./SS15.Launcher_Windows.zip
+        asset_name: SS15.Launcher_Windows.zip
         asset_content_type: application/zip
 
     # Upload macOS
@@ -90,6 +90,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./Trauma.Launcher_macOS.zip
-        asset_name: Trauma.Launcher_macOS.zip
+        asset_path: ./SS15.Launcher_macOS.zip
+        asset_name: SS15.Launcher_macOS.zip
         asset_content_type: application/zip

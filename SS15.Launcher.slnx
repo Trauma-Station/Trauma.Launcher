@@ -1,0 +1,32 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/MSBuild/">
+    <File Path="MSBuild/Robust.Trimming.targets" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Packages.props" />
+    <File Path="Launcher.props" />
+    <File Path="LICENSE-AVALONIA.txt" />
+    <File Path="LICENSE-SS14.txt" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/Build Scripts/">
+    <File Path="download_net_runtime.py" />
+    <File Path="exe_set_subsystem.py" />
+    <File Path="publish.py" />
+  </Folder>
+  <Folder Name="/Solution Items/Workflows/">
+    <File Path=".github/workflows/build-test.yml" />
+    <File Path=".github/workflows/publish-release.yml" />
+  </Folder>
+  <Project Path="Robust.LoaderApi/Robust.LoaderApi/Robust.LoaderApi.csproj" />
+  <Project Path="SS15.Launcher.Bootstrap/SS15.Launcher.Bootstrap.csproj" />
+  <Project Path="SS15.Launcher.Tests/SS15.Launcher.Tests.csproj" />
+  <Project Path="SS15.Launcher/SS15.Launcher.csproj" />
+  <Project Path="SS15.Loader/SS15.Loader.csproj" />
+</Solution>

@@ -4,4 +4,4 @@ Encoding=UTF-8
 Version=1.0
 Type=Application
 Exec=env ./Trauma.Launcher %u
-Name=Trauma Station
+Name=Space Station 15

@@ -117,7 +117,7 @@ buildDotnetModule rec {
       name = pname;
       exec = meta.mainProgram;
       icon = pname;
-      desktopName = "Trauma Station Launcher";
+      desktopName = "Space Station 15 Launcher";
       comment = meta.description;
       categories = [ "Game" ];
       startupWMClass = meta.mainProgram;
@@ -132,7 +132,7 @@ buildDotnetModule rec {
   '';
 
   meta = {
-    description = "Launcher for Trauma Station, a multiplayer game about paranoia and disaster";
+    description = "Launcher for Space Station 15, a multiplayer game about paranoia and disaster";
     homepage = "https://traumastation.com";
     license = lib.licenses.gpl3Only;
     maintainers = [ ];

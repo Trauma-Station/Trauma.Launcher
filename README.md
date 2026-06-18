@@ -1,6 +1,6 @@
-# Trauma Station Launcher
+# Space Station 15 Launcher
 
-This is the launcher you should be using to connect to Trauma Station.
+This is the launcher you should be using to connect to Space Station 15.
 It currently supports:
 - managing different engines
 - multiple auth servers so you can play on your favourite servers no matter what
@@ -15,7 +15,7 @@ Useful environment variable for development:
 
 # License
 
-Trauma Station's Launcher is licensed under the [GNU GPLv3](/LICENSE.txt).
+Space Station 15's Launcher is licensed under the [GNU GPLv3](/LICENSE.txt).
 It is derived from Space Station 14's launcher which is licensed under the [MIT License](/LICENSE-SS14.txt).
 A single file `ViewLocator.cs` is derived from an avalonia sample licensed under the [MIT License](/LICENSE-AVALONIA.txt).
 

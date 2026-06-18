@@ -5,7 +5,7 @@
         Other places this value needs to be updated:
         1. Packaging scripts.
         2. Download .NET runtime script.
-        3. Local dev Trauma.Loader launching code.
+        3. Local dev SS15.Loader launching code.
         4. build-test.yml GitHub Actions workflow
         5. publish-release.yml GitHub Actions workflow
         -->
@@ -14,7 +14,7 @@
 
         <!--
         CET breaks for people on older, but still supported Windows versions:
-        https://github.com/space-wizards/Trauma.Launcher/issues/198
+        https://github.com/space-wizards/SS15.Launcher/issues/198
         -->
         <CETCompat>false</CETCompat>
     </PropertyGroup>
