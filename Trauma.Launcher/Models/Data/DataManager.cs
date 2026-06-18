@@ -149,8 +149,6 @@ public sealed class DataManager : ReactiveObject
     public ICollection<Hub> Hubs { get; }
     public ICollection<AuthServer> AuthServers { get; }
 
-    public bool HasCustomHubs => Hubs.Count > 0;
-
     /// <summary>
     /// Returns true if an engine name is either built in to the launcher or added by the user.
     /// </summary>

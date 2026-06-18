@@ -142,21 +142,11 @@ public sealed class ServerEntryViewModel : ObservableRecipient, IRecipient<Favor
     public ServerStatusData CacheData => _cacheData;
 
     public string? FetchedFrom
-    {
-        get
-        {
-            if (_cfg.HasCustomHubs)
-            {
-                return _cacheData.HubAddress == null
-                    ? null
-                    : _loc.GetString("server-fetched-from-hub", ("hub", GetHubShortName(_cacheData.HubAddress)));
-            }
+        => _cacheData.HubAddress is { } hubAddress
+            ? _loc.GetString("server-fetched-from-hub", ("hub", GetHubShortName(hubAddress)))
+            : null;
 
-            return null;
-        }
-    }
-
-    public bool ShowFetchedFrom => _cfg.HasCustomHubs && !ViewedInFavoritesPane;
+    public bool ShowFetchedFrom => !ViewedInFavoritesPane;
 
     public void FavoriteButtonPressed()
     {
