@@ -234,13 +234,13 @@ public sealed class DataManager : ReactiveObject
     public void AddEngineModule(InstalledEngineModule module)
     {
         _modules.Add(module);
-        AddDbCommand(c => c.Execute("INSERT INTO EngineModule VALUES (@Name, @Version)", module));
+        AddDbCommand(c => c.Execute("INSERT INTO EngineModule VALUES (@Engine, @Name, @Version)", module));
     }
 
     public void RemoveEngineModule(InstalledEngineModule module)
     {
         _modules.Remove(module);
-        AddDbCommand(c => c.Execute("DELETE FROM EngineModule WHERE Name = @Name AND Version = @Version", module));
+        AddDbCommand(c => c.Execute("DELETE FROM EngineModule WHERE Engine = @Engine AND Name = @Name AND Version = @Version", module));
     }
 
     public void AddLogin(LoginInfo login)
@@ -380,7 +380,7 @@ public sealed class DataManager : ReactiveObject
             sqliteConnection.Query<InstalledEngineVersion>("SELECT Engine,Version,Signature FROM EngineInstallation"));
 
         // Engine modules
-        _modules.AddRange(sqliteConnection.Query<InstalledEngineModule>("SELECT Name, Version FROM EngineModule"));
+        _modules.AddRange(sqliteConnection.Query<InstalledEngineModule>("SELECT Engine, Name, Version FROM EngineModule"));
 
         // Load CVars.
         var configRows = sqliteConnection.Query<(string, object)>("SELECT Key, Value FROM Config");
