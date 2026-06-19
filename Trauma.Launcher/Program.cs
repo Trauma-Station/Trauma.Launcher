@@ -231,12 +231,15 @@ internal static class Program
         locator.RegisterConstant(new Updater());
         locator.RegisterConstant(authApi);
         locator.RegisterConstant(hubApi);
-        locator.RegisterConstant(new ServerListCache());
+        var serverCache = new ServerListCache();
+        locator.RegisterConstant(serverCache);
         locator.RegisterConstant(loginManager);
         locator.RegisterConstant(overrideAssets);
         locator.RegisterConstant(launcherInfo);
 
         CheckLauncherArchitecture(cfg, engineManager);
+
+        cfg.TryAddDefaultFavorites(serverCache);
 
         return AppBuilder.Configure(() => new App(overrideAssets))
             .UsePlatformDetect()

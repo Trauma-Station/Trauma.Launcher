@@ -78,4 +78,12 @@ public static class ConfigConstants
     public static readonly UrlFallbackSet UrlAssetsBase = LauncherDataBaseUrl + "assets/";
 
     public const string FallbackUsername = "JoeGenero";
+
+    /// <summary>
+    /// Servers to auto favorite the first time you start the launcher.
+    /// Checks default hubs to get the names from their server lists.
+    /// </summary>
+    public static readonly string[] DefaultFavorites = [
+        "ss14s://server.traumastation.com"
+    ];
 }

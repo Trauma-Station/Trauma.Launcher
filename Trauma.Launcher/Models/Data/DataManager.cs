@@ -12,6 +12,8 @@ using JetBrains.Annotations;
 using Microsoft.Data.Sqlite;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Serilog;
+using Splat;
+using Trauma.Launcher.Models.ServerStatus;
 using Trauma.Launcher.Utility;
 
 namespace Trauma.Launcher.Models.Data;
@@ -429,10 +431,59 @@ public sealed class DataManager : ReactiveObject
         }
     }
 
-    private CVarEntry<T> CreateEntry<T>(CVarDef<T> def)
+    public void TryAddDefaultFavorites(ServerListCache cache)
     {
-        return new CVarEntry<T>(this, def);
+        if (GetCVar(CVars.AddedDefaultFavorites))
+            return; // dont try add it again
+
+        Log.Debug("Trying to add default favorite servers");
+        _ = Task.Run(async () =>
+        {
+            var refreshed = false;
+            foreach (var address in ConfigConstants.DefaultFavorites)
+            {
+                if (_favoriteServers.Lookup(address).HasValue)
+                {
+                    Log.Debug("Already have {address} favorited, nice!", address);
+                    break;
+                }
+
+                if (!refreshed)
+                {
+                    try
+                    {
+                        await cache.RefreshServerList();
+                        refreshed = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error($"Failed to refresh server list when adding default favorites: {e}");
+                        return; // probably bad internet connection try again next time
+                    }
+                }
+
+                // muh O(n) but its 1 in like 100 anyway
+                var name = address;
+                foreach (var server in cache.AllServers)
+                {
+                    if (server.Address == address && server.Name != null)
+                    {
+                        name = server.Name;
+                        break;
+                    }
+                }
+
+                Log.Information("Added default server {address}: {name}", address, name);
+                AddFavoriteServer(new(name, address));
+            }
+
+            // good now dont check it again
+            SetCVar(CVars.AddedDefaultFavorites, true, commit: true);
+        });
     }
+
+    private CVarEntry<T> CreateEntry<T>(CVarDef<T> def)
+        => new CVarEntry<T>(this, def);
 
     [SuppressMessage("ReSharper", "UseAwaitUsing")]
     public async void CommitConfig()

@@ -35,6 +35,12 @@ public static class CVars
         = CVarDef.Create("HasDismissedRosettaWarning", false);
 
     /// <summary>
+    /// Set to true once at least one server has been auto favorited to stop it trying to add them again.
+    /// </summary>
+    public static readonly CVarDef<bool> AddedDefaultFavorites
+        = CVarDef.Create("AddedDefaultFavorites", false);
+
+    /// <summary>
     /// Disable checking engine build signatures when launching game.
     /// Only enable if you know what you're doing.
     /// </summary>
