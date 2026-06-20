@@ -51,7 +51,7 @@ buildDotnetModule rec {
     owner = "Trauma-Station";
     repo = "Trauma.Launcher";
     tag = "v${version}";
-    hash = "sha256-GDfm/1mzUAeVc5Js+sosR0wC3xrKy21kMJCLd77eiMQ=";
+    hash = "sha256-NE4sEOVhq8LjLfeDCnbYYNZ3TZGGGzTUA3A0ptG91eQ="; # This hash needs to be bumped whenever the version number is bumped. Replace with lib.fakeHash then run nix run and nix will tell you the correct hash. It is not the same as a github commit hash.
     fetchSubmodules = true;
   };
 
