@@ -1,15 +1,21 @@
 using System.Reactive.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Avalonia.Platform.Storage;
+using Serilog;
 using Splat;
 using Trauma.Launcher.Localization;
 using Trauma.Launcher.Models;
+using Trauma.Launcher.Models.Data;
+using Trauma.Launcher.Models.Logins;
 using Trauma.Launcher.Utility;
 
 namespace Trauma.Launcher.ViewModels;
 
 public sealed class ConnectingViewModel : ViewModelBase
 {
+    private readonly DataManager _data = Locator.Current.GetRequiredService<DataManager>();
+    private readonly LoginManager _login = Locator.Current.GetRequiredService<LoginManager>();
     private readonly Connector _connector;
     private readonly Updater _updater;
     private readonly MainWindowViewModel _windowVm;
@@ -32,6 +38,7 @@ public sealed class ConnectingViewModel : ViewModelBase
                              _connector.ClientExitedBadly;
 
     public static event Action? StartedConnecting;
+    public static event Action<DataManager, string[]>? OnShowAuthServerWarning;
 
     public ConnectingViewModel(Connector connector, MainWindowViewModel windowVm, string? givenReason, ConnectionType connectionType)
     {
@@ -225,7 +232,6 @@ public sealed class ConnectingViewModel : ViewModelBase
         var vm = new ConnectingViewModel(connector, windowVm, givenReason, ConnectionType.Server);
         windowVm.ConnectingVM = vm;
         vm.Start(address);
-        StartedConnecting?.Invoke();
     }
 
     public static void StartContentBundle(MainWindowViewModel windowVm, IStorageFile file)
@@ -237,9 +243,50 @@ public sealed class ConnectingViewModel : ViewModelBase
         StartedConnecting?.Invoke();
     }
 
-    private void Start(string address)
+    private async void Start(string address)
     {
+        if (!await CheckAccountAuthServers(address))
+        {
+            CloseOverlay();
+            return;
+        }
+
+        StartedConnecting?.Invoke();
         _connector.Connect(address, _cancelSource.Token);
+    }
+
+    private async Task<bool> CheckAccountAuthServers(string address)
+    {
+        if (_login.ActiveAccount is not { } account)
+            return true; // not logged in, let connector handle it if the server requires auth
+
+        if (_data.GetAuthServer(account.AuthServer) is not { } currentServer)
+        {
+            Log.Error("Unknown auth server {server} for account {name}!", account.AuthServer, account.Username);
+            return false; // wont be able to log in and this should never happen anyway, just stick to a log
+        }
+
+        try
+        {
+            var (info, _, _) = await _connector.GetServerInfoAsync(address, new());
+            if (info.AuthInformation.AuthServers is not { } servers)
+                return true; // old server doesnt supply auth servers or not using centralized auth
+
+            if (servers.Contains(currentServer.AuthUrl))
+                return true; // current account is from an allowed auth server, were all good
+
+            Log.Information("Trying to find account from {servers} auth servers with name {name}", servers, account.Username);
+            if (_login.LogInToMatching(account.Username, servers))
+                return true; // logged into an allowed alt, connecting should work
+
+            OnShowAuthServerWarning?.Invoke(_data, servers);
+            return false; // have to log in or add this auth server
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "Caught error while getting server info for {address}", address);
+            return true; // if its a real error it should show nicely when trying to properly connect
+        }
     }
 
     private void StartContentBundle(IStorageFile file)

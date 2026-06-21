@@ -476,7 +476,7 @@ public sealed partial class Connector : ReactiveObject
         return installation;
     }
 
-    private async Task<(ServerInfo, Uri, Uri)> GetServerInfoAsync(string address, CancellationToken cancel)
+    public async Task<(ServerInfo, Uri, Uri)> GetServerInfoAsync(string address, CancellationToken cancel)
     {
         if (!UriHelper.TryParseSs14Uri(address, out var parsedAddress))
         {

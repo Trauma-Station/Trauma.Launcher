@@ -148,6 +148,30 @@ public sealed class LoginManager : ReactiveObject
         account.LoginInfo.Token = token;
     }
 
+    /// <summary>
+    /// Changes the <see cref="ActiveAccount"/> to one with the same name but using a different auth server from a list of URLs.
+    /// Returns true if it was changed.
+    /// </summary>
+    public bool LogInToMatching(string name, string[] authServers)
+    {
+        foreach (var login in _logins.Items)
+        {
+            if (login is not ActiveLoginData data ||
+                data.Status != AccountLoginStatus.Available ||
+                data.Username != name ||
+                _cfg.GetAuthServer(data.AuthServer) is not { } server ||
+                !authServers.Contains(server.AuthUrl))
+                continue;
+
+            // found a in-date allowed auth-alt, now switch to it
+            Log.Information("Automatically switched account to {name}:{server} to match allowed auth servers", name, data.AuthServer);
+            ActiveAccount = login;
+            return true;
+        }
+
+        return false;
+    }
+
     /// <exception cref="AuthApiException">Thrown if an API error occured.</exception>
     public Task UpdateSingleAccountStatus(LoggedInAccount account)
     {

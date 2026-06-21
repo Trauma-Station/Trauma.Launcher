@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="100"
+        MinWidth="700" MinHeight="400"
+        Width="700" Height="400"
+        x:Class="Trauma.Launcher.Views.AuthServerWarningDialog"
+        Icon="{DynamicResource WindowIcon}"
+        Title="No valid auth servers found!"
+        Padding="4"
+        WindowStartupLocation="CenterOwner">
+  <StackPanel>
+    <TextBlock Text="You tried to join a server, but you have no accounts it is allowing you to use" Classes="NanoHeadingSmall"/>
+    <TextBlock Text="The server only allows some authentication servers which store your account login."/>
+    <TextBlock Text="You are not logged in on any accounts that use these allowed authentication servers."/>
+    <TextBlock Text="In order to connect, log in or register to one of these servers:"/>
+
+	<StackPanel Name="ServerList" Margin="4"/>
+
+    <TextBlock Text="If you do not recognize any of these servers:" Classes="NanoHeadingSmall"/>
+    <TextBlock Text="- Ask the server owner and community for how to register"/>
+    <TextBlock Text="- If you trust this authentication server, add it in the launcher settings"/>
+    <TextBlock Text="- DO NOT REUSE A LOGIN BETWEEN DIFFERENT SERVERS!"/>
+    <TextBlock Text="  If you reuse logins, a malicious server can log in on other auth servers with your credentials."/>
+    <TextBlock Text="  This is especially dangerous if you are a server admin or other well-known figure."/>
+    <TextBlock Text="- Use a password manager like KeepassXC (free + open source + local)"/>
+    <TextBlock Text="  to easily make and store secure random passwords."/>
+
+    <Button MaxWidth="120" Content="Got it!" Click="Close"/>
+  </StackPanel>
+</Window>

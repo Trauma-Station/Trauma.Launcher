@@ -199,6 +199,20 @@ public sealed class DataManager : ReactiveObject
         }
     }
 
+    /// <summary>
+    /// Get an auth server's name by its url if it's known, null otherwise.
+    /// </summary>
+    public string? GetAuthServerName(string url)
+    {
+        foreach (var server in AllAuthServers())
+        {
+            if (server.AuthUrl == url)
+                return server.Name;
+        }
+
+        return null;
+    }
+
     public void AddFavoriteServer(FavoriteServer server)
     {
         if (_favoriteServers.Lookup(server.Address).HasValue)
