@@ -36,6 +36,9 @@ internal static class Program
         Console.OutputEncoding = Encoding.UTF8;
 #endif
 
+        // incase UI doesnt work you can still find the source
+        Console.WriteLine($"Source code available at {ConfigConstants.SourceUrl}");
+
 #if USE_SYSTEM_SQLITE
         SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_sqlite3());
 #endif

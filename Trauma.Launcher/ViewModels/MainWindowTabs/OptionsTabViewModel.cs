@@ -77,4 +77,9 @@ public sealed class OptionsTabViewModel : MainWindowTabViewModel
 
         Helpers.OpenUri(server.ManagementUrl);
     }
+
+    public void ViewSourceCode()
+    {
+        Helpers.OpenUri(ConfigConstants.SourceUrl);
+    }
 }

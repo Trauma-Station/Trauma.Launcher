@@ -1,3 +1,4 @@
+using System.Reflection;
 using Trauma.Launcher.Models.Data;
 using Trauma.Launcher.Utility;
 
@@ -5,7 +6,7 @@ namespace Trauma.Launcher;
 
 public static class ConfigConstants
 {
-    public const string CurrentLauncherVersion = "trauma-0.7";
+    public const string CurrentLauncherVersion = "trauma-0.8";
     public static readonly bool DoVersionCheck = true;
 
     // Refresh login tokens if they're within <this much> of expiry.
@@ -39,6 +40,11 @@ public static class ConfigConstants
     public const string WebsiteUrl = "https://wiki.traumastation.com";
     public const string DownloadUrl = "https://github.com/Trauma-Station/Trauma.Launcher/releases";
     public const string NewsFeedUrl = "https://news.traumastation.com/index.xml";
+    private const string SourceRepo = "https://github.com/Trauma-Station/Trauma.Launcher";
+    /// <summary>
+    /// The url for the source code of the current commit.
+    /// </summary>
+    public static readonly string SourceUrl;
 
     private static readonly Dictionary<string, UrlFallbackSet> EngineBaseUrls = new()
     {
@@ -86,4 +92,11 @@ public static class ConfigConstants
     public static readonly string[] DefaultFavorites = [
         "ss14s://server.traumastation.com"
     ];
+
+    static ConfigConstants()
+    {
+        SourceUrl = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>() is { } version
+            ? $"{SourceRepo}/tree/{version.InformationalVersion.Split('+')[1]}"
+            : SourceRepo;
+    }
 }

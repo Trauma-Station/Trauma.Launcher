@@ -22,6 +22,10 @@
       <StackPanel Orientation="Vertical">
         <views:LanguageSelector HorizontalAlignment="Left" Margin="4" DataContext="{Binding Language}"
                                 Placement="BottomEdgeAlignedLeft" />
+        <Button Command="{Binding ViewSourceCode}" HorizontalAlignment="Left">
+          <views:IconLabel Icon="{DynamicResource 'InfoIcon-github'}" Content="View Source Code" />
+        </Button>
+
         <Button Content="{loc:Loc tab-options-account-settings}" Margin="4" Command="{Binding OpenAccountSettings}" HorizontalAlignment="Left" />
         <TextBlock VerticalAlignment="Center" TextWrapping="Wrap"
                    Text="{loc:Loc tab-options-account-settings-desc}"
