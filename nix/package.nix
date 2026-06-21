@@ -51,7 +51,7 @@ buildDotnetModule rec {
     owner = "Trauma-Station";
     repo = "Trauma.Launcher";
     tag = "v${version}";
-    hash = "sha256-GDfm/1mzUAeVc5Js+sosR0wC3xrKy21kMJCLd77eiMQ=";
+    hash = "sha256-m3fStYKuK/fuzIDLYaSKh7zkTTGuTKpgC3im3CMkOFg=";
     fetchSubmodules = true;
   };
 
