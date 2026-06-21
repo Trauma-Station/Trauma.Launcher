@@ -29,7 +29,7 @@ internal class Program
         var prefix = "";
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            prefix = "Trauma Station.app/Contents/Resources/";
+            prefix = "Space Station 14.app/Contents/Resources/"; // hope the name of this doesnt matter as long as its in engine :D
         }
 
         Console.WriteLine($"Loading zip from {robustPath} with prefix {prefix}");

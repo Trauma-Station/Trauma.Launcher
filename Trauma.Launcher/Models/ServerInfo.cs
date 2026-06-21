@@ -18,7 +18,7 @@ public sealed class ServerInfo
 
     [JsonPropertyName("privacy_policy")] public ServerPrivacyPolicyInfo? PrivacyPolicy { get; set; }
 
-    [JsonPropertyName("engine-type")]
+    [JsonPropertyName("engine_type")]
     public string? Engine { get; set; }
 }
 
@@ -27,6 +27,8 @@ public sealed record ServerInfoLink(string Name, string? Icon, string Url);
 public sealed class ServerAuthInformation
 {
     [JsonPropertyName("mode")] public AuthMode Mode { get; set; }
+
+    [JsonPropertyName("auth_servers")] public string[]? AuthServers { get; set; }
 
     [JsonPropertyName("public_key")]
     public string PublicKey { get; set; } = default!;
