@@ -32,6 +32,7 @@ internal class Program
             prefix = "Trauma Station.app/Contents/Resources/";
         }
 
+        Console.WriteLine($"Loading zip from {robustPath} with prefix {prefix}");
         _fileApi = new ZipFileApi(zipArchive, prefix);
     }
 
