@@ -252,12 +252,11 @@ public sealed class AuthApi
             Log.Debug("Response for error:\n{response}\n{content}", resp, await resp.Content.ReadAsStringAsync());
             throw new AuthApiException($"Server returned unexpected HTTP status code: {resp.StatusCode}");
         }
-        catch (HttpRequestException httpE)
+        catch (Exception e)
         {
-            // Does it make sense to just... swallow this exception? The token will stay "active" until it expires.
-            Log.Error(httpE, "HttpRequestException in CheckTokenAsync");
+            Log.Error(e, "HttpRequestException in CheckTokenAsync");
             HttpSelfTest.StartSelfTest();
-            throw new AuthApiException("HttpRequestException thrown", httpE);
+            return true; // assume its valid if checking failed, if the server works in the future and the token expired it will just say so
         }
     }
 
