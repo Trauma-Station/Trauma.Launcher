@@ -74,10 +74,17 @@ public sealed class App : Application
                 continue;
             }
 
-            var ms = new MemoryStream(data, writable: false);
-            var asset = LoadAsset(def.Type, ms);
+            try
+            {
+                var ms = new MemoryStream(data, writable: false);
+                var asset = LoadAsset(def.Type, ms);
 
-            Resources[name] = asset;
+                Resources[name] = asset;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "Failed to load asset override for {name}", name);
+            }
         }
 
         // Clear assets not given to base data.
