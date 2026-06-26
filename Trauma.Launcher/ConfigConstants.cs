@@ -6,7 +6,7 @@ namespace Trauma.Launcher;
 
 public static class ConfigConstants
 {
-    public const string CurrentLauncherVersion = "trauma-0.9";
+    public const string CurrentLauncherVersion = "trauma-0.10";
     public static readonly bool DoVersionCheck = true;
 
     // Refresh login tokens if they're within <this much> of expiry.
@@ -48,15 +48,12 @@ public static class ConfigConstants
 
     private static readonly Dictionary<string, UrlFallbackSet> EngineBaseUrls = new()
     {
-        {"OldToolbox", new([
+        {"RobustToolbox", new([
             "https://robust-builds.cdn.spacestation14.com/",
             "https://robust-builds.fallback.cdn.spacestation14.com/"
         ])},
         {"QuietToolbox", new([
             "https://engine.cdn.traumastation.com/"
-        ])},
-        {"RobustToolbox", new([
-            "https://robust-builds.playss14.com/"
         ])}
     };
 
@@ -67,7 +64,7 @@ public static class ConfigConstants
     /// <summary>
     /// Engine to assume is being used if one is not specified.
     /// </summary>
-    public const string DefaultEngine = "OldToolbox";
+    public const string DefaultEngine = "RobustToolbox";
 
     private static readonly UrlFallbackSet LauncherDataBaseUrl = new([
         "https://launcher.cdn.traumastation.com/"

@@ -1,9 +1,9 @@
 -- Add Engine field to EngineModule
-ALTER TABLE EngineModule ADD COLUMN Engine TEXT NOT NULL DEFAULT "OldToolbox";
+ALTER TABLE EngineModule ADD COLUMN Engine TEXT NOT NULL DEFAULT "RobustToolbox";
 
 -- then change its primary key
 CREATE TABLE EngineModule2 (
-	Engine TEXT NOT NULL,
+    Engine TEXT NOT NULL,
     Name TEXT NOT NULL,
     Version TEXT NOT NULL,
 
