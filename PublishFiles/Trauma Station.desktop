@@ -1,7 +1,21 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
+Comment=A multiplayer disaster simulator
 Encoding=UTF-8
-Version=1.0
-Type=Application
 Exec=env ./Trauma.Launcher %u
+GenericName[en_US]=Trauma Station
+GenericName=Trauma Station
+Icon=TS14.ico
+MimeType=
+Name[en_US]=Trauma Station
 Name=Trauma Station
+NoDisplay=false
+Path=
+PrefersNonDefaultGPU=false
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-KDE-SubstituteUID=false
+X-KDE-Username=
