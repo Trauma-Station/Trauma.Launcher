@@ -16,6 +16,7 @@ public static class LauncherPaths
     public static readonly string ClientMacLogName = "client.mac.log";
     public static readonly string ClientStdoutLogName = "client.stdout.log";
     public static readonly string ClientStderrLogName = "client.stderr.log";
+    public static readonly string ClientOldLogName = "client.old.log";
 
     public static readonly string DirLauncherInstall = GetInstallDir();
     public static readonly string DirUserData = GetUserDataDir();
@@ -29,6 +30,7 @@ public static class LauncherPaths
     public static readonly string PathClientMacLog = Path.Combine(DirLogs, ClientMacLogName);
     public static readonly string PathClientStdoutLog = Path.Combine(DirLogs, ClientStdoutLogName);
     public static readonly string PathClientStderrLog = Path.Combine(DirLogs, ClientStderrLogName);
+    public static readonly string PathClientOldLog = Path.Combine(DirLogs, ClientOldLogName);
     public static readonly string PathPublicKeys = Path.Combine(DirLauncherInstall, "signing_keys");
     public static readonly string PathContentDb = Path.Combine(DirLocalData, "content.db");
     public static readonly string PathOverrideAssetsDb = Path.Combine(DirLocalData, "override_assets.db");

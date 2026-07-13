@@ -85,7 +85,7 @@ public sealed partial class EngineManagerDynamic
         // TODO: If-Modified-Since and If-None-Match request conditions.
 
         var url = engine.ManifestUrl;
-        Log.Debug("Loading manifest from {manifestUrl}...", url);
+        Log.Debug("Loading manifest from {manifestUrl}...", url.Urls[0]);
         engine.VersionInfo = await url.GetFromJsonAsync<Dictionary<string, VersionInfo>>(_http, cancel);
         engine.ValidUntil = _manifestStopwatch.Elapsed + ConfigConstants.EngineManifestCacheTime;
     }

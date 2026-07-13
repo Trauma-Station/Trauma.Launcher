@@ -361,8 +361,16 @@ public sealed partial class EngineManagerDynamic : IEngineManager
         // My shitty hacks to do engine version redirection fall apart here as well.
         // module name ("Robust" for engine itself) -> engine id + version
         var modulesUsed = new HashSet<(string, EngineVersion)>();
+        var badEngines = new HashSet<string>();
         foreach (var (id, name, version) in origModulesUsed)
         {
+            if (!_cachedEngines.ContainsKey(id))
+            {
+                Log.Warning("Unknown engine dependency {id} {name}:{version} found in DB, removing it", id, name, version);
+                badEngines.Add(id);
+                continue;
+            }
+
             if (name == "Robust" && await GetVersionInfo(id, version) is { } redirect)
             {
                 modulesUsed.Add(("Robust", new(id, redirect.Version)));
@@ -373,7 +381,17 @@ public sealed partial class EngineManagerDynamic : IEngineManager
             }
         }
 
-        var toCull = _cfg.EngineInstallations.Items.Where(i => !modulesUsed.Contains(("Robust", new(i.Engine, i.Version)))).ToArray();
+        foreach (var engine in badEngines)
+        {
+            contenCon.Execute("DELETE FROM ContentEngineDependency WHERE ENGINE = @Engine", new { Engine = engine });
+        }
+
+        var toCull = new List<InstalledEngineVersion>();
+        foreach (var item in _cfg.EngineInstallations.Items)
+        {
+            if (!_cachedEngines.ContainsKey(item.Engine) || !modulesUsed.Contains(("Robust", new(item.Engine, item.Version))))
+                toCull.Add(item);
+        }
 
         foreach (var installation in toCull)
         {
@@ -388,7 +406,12 @@ public sealed partial class EngineManagerDynamic : IEngineManager
         }
 
         // Cull modules
-        var toCullModules = _cfg.EngineModules.Where(m => !modulesUsed.Contains((m.Name, new(m.Engine, m.Version)))).ToArray();
+        var toCullModules = new List<InstalledEngineModule>();
+        foreach (var m in _cfg.EngineModules)
+        {
+            if (!_cachedEngines.ContainsKey(m.Engine) || !modulesUsed.Contains((m.Name, new(m.Engine, m.Version))))
+                toCullModules.Add(m);
+        }
 
         foreach (var module in toCullModules)
         {

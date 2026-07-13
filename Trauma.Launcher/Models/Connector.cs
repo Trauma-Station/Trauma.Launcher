@@ -613,6 +613,17 @@ public sealed partial class Connector : ReactiveObject
         {
             Log.Debug("Setting up manual-pipe logging for new client with PID {pid}.", process.Id);
 
+            // rotate previous log to not overwrite potentially important logs by restarting the game once
+            try
+            {
+                if (File.Exists(LauncherPaths.PathClientStdoutLog))
+                    File.Move(LauncherPaths.PathClientStdoutLog, LauncherPaths.PathClientOldLog, overwrite: true);
+            }
+            catch (Exception e)
+            {
+                Log.Error("Caught exception while trying to rotate log files: {e}", e);
+            }
+
             var fileStdout = new FileStream(
                 LauncherPaths.PathClientStdoutLog,
                 FileMode.Create,
