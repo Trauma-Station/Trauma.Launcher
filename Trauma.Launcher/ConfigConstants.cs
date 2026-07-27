@@ -6,7 +6,7 @@ namespace Trauma.Launcher;
 
 public static class ConfigConstants
 {
-    public const string CurrentLauncherVersion = "trauma-0.11";
+    public const string CurrentLauncherVersion = "trauma-0.12";
     public static readonly bool DoVersionCheck = true;
 
     // Refresh login tokens if they're within <this much> of expiry.
@@ -30,11 +30,10 @@ public static class ConfigConstants
     // TODO: ed25519 auth
     public static readonly AuthServer[] DefaultAuthServers = [
         new("SS14", "https://account.spacestation14.com/Identity/Account/", "https://auth.spacestation14.com/"),
-        new("Wizden", "https://account.playss14.com/Identity/Account/", "https://auth.playss14.com/")
     ];
     public static readonly UrlFallbackSet[] DefaultHubUrls = [
-        new(["https://hub.spacestation14.com/", "https://hub.fallback.spacestation14.com/"]),
-        new(["https://hub.playss14.com/"])
+        new(["https://hub.traumastation.com/"]),
+        new(["https://hub.spacestation14.com/", "https://hub.fallback.spacestation14.com/"])
     ];
     public const string DiscordUrl = "https://discord.traumastation.com/";
     public const string WebsiteUrl = "https://wiki.traumastation.com";

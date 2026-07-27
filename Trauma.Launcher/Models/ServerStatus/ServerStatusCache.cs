@@ -184,6 +184,7 @@ public sealed class ServerStatusCache : IServerSource
         }
         catch (Exception e) when (e is JsonException or HttpRequestException or InvalidDataException)
         {
+            Log.Error(e, "Caught exception while fetching server info for server {address} via {hub}", data.Address, data.HubAddress);
             data.StatusInfo = ServerStatusInfoCode.Error;
             return;
         }

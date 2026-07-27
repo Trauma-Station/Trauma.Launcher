@@ -239,9 +239,10 @@ public sealed partial class MainWindowViewModel : ViewModelBase, IErrorOverlayOw
         {
             await _loginMgr.UpdateSingleAccountStatus(account);
 
-            // Can't be unsure, that'd have thrown.
-            Debug.Assert(account.Status != AccountLoginStatus.Unsure);
-            TrySwitchToAccount(account);
+            if (account.Status == AccountLoginStatus.Unsure)
+                _cfg.RemoveLogin(account.LoginInfo);
+            else
+                TrySwitchToAccount(account);
         }
         catch (AuthApiException e)
         {
