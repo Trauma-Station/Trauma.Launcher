@@ -163,13 +163,12 @@ public sealed class ContentManager
         try
         {
             proc = Process.GetProcessById(pid);
+            return proc.MainModule?.FileName == mainModule;
         }
-        catch (ArgumentException)
+        catch (Exception)
         {
-            // Process doesn't exist.
+            // Process doesn't exist or, on windows, couldn't access its exe.
             return false;
         }
-
-        return proc.MainModule?.FileName == mainModule;
     }
 }

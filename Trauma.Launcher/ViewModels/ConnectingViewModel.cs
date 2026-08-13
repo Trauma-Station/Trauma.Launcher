@@ -299,6 +299,11 @@ public sealed class ConnectingViewModel : ViewModelBase
         CloseOverlay();
     }
 
+    public void ShowLogs()
+    {
+        LauncherPaths.OpenLogsDir();
+    }
+
     private void CloseOverlay()
     {
         _windowVm.ConnectingVM = null;

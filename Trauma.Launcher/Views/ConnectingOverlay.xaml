@@ -20,8 +20,10 @@
                      MinWidth="300" />
 
         <Panel DockPanel.Dock="Bottom">
-          <Button Content="Ok" IsVisible="{Binding IsErrored}" HorizontalAlignment="Center"
-                  Command="{Binding ErrorDismissed}" MinWidth="75" />
+          <StackPanel Orientation="Horizontal" IsVisible="{Binding IsErrored}" HorizontalAlignment="Center">
+            <Button DockPanel.Dock="Left" Content="Ok" Command="{Binding ErrorDismissed}" MinWidth="60" />
+            <Button DockPanel.Dock="Right" Content="Show Logs" Command="{Binding ShowLogs}" MinWidth="60" />
+          </StackPanel>
 
           <DockPanel LastChildFill="False">
             <Button DockPanel.Dock="Left"

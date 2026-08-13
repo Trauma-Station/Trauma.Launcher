@@ -6,7 +6,7 @@ namespace Trauma.Launcher;
 
 public static class ConfigConstants
 {
-    public const string CurrentLauncherVersion = "trauma-0.12";
+    public const string CurrentLauncherVersion = "trauma-0.13";
     public static readonly bool DoVersionCheck = true;
 
     // Refresh login tokens if they're within <this much> of expiry.

@@ -37,7 +37,7 @@
   soundfont-path ? "${soundfont-fluid}/share/soundfonts/FluidR3_GM2-2.sf2",
 }:
 let
-  version = "0.12.0";
+  version = "0.13.0";
   pname = "trauma-station-launcher";
 in
 buildDotnetModule rec {

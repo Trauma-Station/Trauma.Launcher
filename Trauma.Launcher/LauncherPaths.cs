@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace Trauma.Launcher;
@@ -43,6 +44,15 @@ public static class LauncherPaths
         Ensure(DirModuleInstallations);
 
         static void Ensure(string path) => Helpers.EnsureDirectoryExists(path);
+    }
+
+    public static void OpenLogsDir()
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            UseShellExecute = true,
+            FileName = DirLogs
+        });
     }
 
     private static string GetInstallDir()
