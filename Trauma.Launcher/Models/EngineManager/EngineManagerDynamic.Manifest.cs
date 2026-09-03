@@ -120,14 +120,18 @@ public sealed partial class EngineManagerDynamic
         {
             Debug.Assert(VersionInfo != null);
 
+            var originalVersion = version;
             if (!VersionInfo.TryGetValue(version, out var info))
                 return null;
 
             if (followRedirects)
             {
+                var used = new HashSet<string>();
                 while (info.RedirectVersion != null)
                 {
                     version = info.RedirectVersion;
+                    if (!used.Add(version))
+                        throw new Exception($"Found a redirect version loop when trying to get engine version {originalVersion}!");
                     info = VersionInfo[info.RedirectVersion];
                 }
             }
