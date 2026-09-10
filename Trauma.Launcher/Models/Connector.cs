@@ -608,6 +608,15 @@ public sealed partial class Connector : ReactiveObject
             commandBuilder.Append($" [{i}] {arg}");
         }
 
+        // On Linux the Steam Overlay conflicts with OpenTK/GLFW on X11 systems with dead keys
+        // Unless someone finds a fix in Robust Toolbox, this is the most straightforward hotfix.
+        // Changing the environment variable in the loader and thus robust toolbox does not work,
+        // presumably because steam overlay injects before that.
+        if (Environment.OSVersion.Platform == PlatformID.Unix)
+        {
+            EnvVar("XMODIFIERS", "@im=none");
+        }
+
         Log.Debug("Launch command: {LaunchCommand}", commandBuilder.ToString());
 
         var process = Process.Start(startInfo);
