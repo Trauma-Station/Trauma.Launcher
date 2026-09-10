@@ -25,9 +25,9 @@
         <Grid>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" /> <!-- Server Name -->
-            <ColumnDefinition SharedSizeGroup="TimeCol" MinWidth="80" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="StatusCol" MinWidth="80" Width="Auto" />
-            <ColumnDefinition SharedSizeGroup="ConnectCol" Width="Auto" />
+            <ColumnDefinition Width="100" /> <!-- Round Time -->
+            <ColumnDefinition Width="100" /> <!-- Player Count -->
+            <ColumnDefinition Width="112" /> <!-- Connect -->
           </Grid.ColumnDefinitions>
 
           <Border Grid.Column="0" Classes="GridCell">
@@ -59,7 +59,7 @@
           <Border Grid.Column="3" Classes="GridCell">
             <Button IsEnabled="{Binding IsOnline}" DockPanel.Dock="Right"
               Content="{loc:Loc server-entry-connect}"
-              Command="{Binding ConnectPressed}" />
+              Command="{Binding ConnectCommand}" />
           </Border>
         </Grid>
       </Expander.Header>
@@ -99,7 +99,7 @@
                     Classes="FavoriteButton"
                     Classes.OpenRight="{Binding ViewedInFavoritesPane}"
                     Classes.IsFavorite="{Binding IsFavorite}"
-                    Command="{Binding FavoriteButtonPressed}">
+                    Command="{Binding FavoriteButtonCommand}">
               <views:IconLabel Name="FavoriteButtonIconLabel"
                                Content="{Binding FavoriteButtonText}"
                                Height="20" />
@@ -109,7 +109,7 @@
             <Button IsVisible="{Binding ViewedInFavoritesPane}"
               Classes="OpenLeft"
               Content="{loc:Loc server-entry-raise}"
-              Command="{Binding FavoriteRaiseButtonPressed}" />
+              Command="{Binding FavoriteRaiseButtonCommand}" />
           </DockPanel>
         </views:RowSideAlignedPanel>
       </DockPanel>

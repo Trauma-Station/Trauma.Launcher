@@ -1,5 +1,7 @@
 using System.ComponentModel;
+using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Trauma.Launcher.Localization;
 using Trauma.Launcher.Models.Data;
@@ -19,6 +21,10 @@ public sealed class ServerEntryViewModel : ObservableRecipient, IRecipient<Favor
     private string _fallbackName = string.Empty;
     private bool _isExpanded;
 
+    public ICommand ConnectCommand { get; }
+    public ICommand FavoriteButtonCommand { get; }
+    public ICommand FavoriteRaiseButtonCommand { get; }
+
     public ServerEntryViewModel(MainWindowViewModel windowVm, ServerStatusData cacheData, IServerSource serverSource,
         DataManager cfg)
     {
@@ -26,6 +32,9 @@ public sealed class ServerEntryViewModel : ObservableRecipient, IRecipient<Favor
         _windowVm = windowVm;
         _cacheData = cacheData;
         _serverSource = serverSource;
+        ConnectCommand = new RelayCommand(ConnectPressed);
+        FavoriteButtonCommand = new RelayCommand(FavoriteButtonPressed);
+        FavoriteRaiseButtonCommand = new RelayCommand(FavoriteRaiseButtonPressed);
     }
 
     public ServerEntryViewModel(
