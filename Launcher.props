@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
     <PropertyGroup>
         <!--
         Me from the present putting a note so me from the future doesn't oopsie like me from the past did:
@@ -10,7 +10,7 @@
         5. publish-release.yml GitHub Actions workflow
         -->
         <TargetFramework>net10.0</TargetFramework>
-        <Version>0.13.0</Version>
+        <Version>0.14.0</Version>
 
         <!--
         CET breaks for people on older, but still supported Windows versions:

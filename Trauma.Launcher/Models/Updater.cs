@@ -303,7 +303,7 @@ public sealed partial class Updater : ReactiveObject
         _cfg.CommitConfig();
 
         Log.Information("Update done!");
-        return new ContentLaunchInfo(versionRowId, modules);
+        return new ContentLaunchInfo(versionRowId, id, modules);
     }
 
 

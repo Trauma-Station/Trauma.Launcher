@@ -224,20 +224,20 @@ public sealed partial class Connector : ReactiveObject
             var metadataJson = zipFile.GetEntry("rt_content_bundle.json");
             if (metadataJson == null)
             {
-                Log.Error("Zip file did not contain rt_content_bundle.json");
+                Log.Error("Zip file did not contain rt_content_bundle.json, it probably isn't a replay");
                 throw new ConnectException(ConnectionStatus.NotAContentBundle);
             }
 
-            ContentBundleMetadata? metadata;
+            ContentBundleMetadata metadata = default!;
             using (var metadataStream = metadataJson.Open())
             {
-                metadata = JsonSerializer.Deserialize<ContentBundleMetadata>(metadataStream);
-            }
+                if (JsonSerializer.Deserialize<ContentBundleMetadata>(metadataStream) is not { } bundleMetadata)
+                {
+                    Log.Error("rt_content_bundle.json deserialized as null");
+                    throw new ConnectException(ConnectionStatus.NotAContentBundle);
+                }
 
-            if (metadata == null)
-            {
-                Log.Error("rt_content_bundle.json deserialized as null");
-                throw new ConnectException(ConnectionStatus.NotAContentBundle);
+                metadata = bundleMetadata;
             }
 
             Log.Debug("Loaded metadata for content bundle, continuing with launch");
@@ -280,8 +280,11 @@ public sealed partial class Connector : ReactiveObject
                 installation = await InstallContentBundleAsync(zipFile, zipHash, metadata, cancel);
             }
 
-            if (metadata.ServerGC == true)
-                installation = installation with { ServerGC = true };
+            installation = installation with
+            {
+                Engine = metadata.Engine ?? installation.Engine,
+                ServerGC = metadata.ServerGC ?? installation.ServerGC
+            };
         }
 
         Log.Debug("Launching client");
@@ -416,7 +419,7 @@ public sealed partial class Connector : ReactiveObject
             }
 
             // Launch client.
-            var engine = serverBuildInformation?.Engine ?? ConfigConstants.DefaultEngine;
+            var engine = launchInfo.Engine ?? serverBuildInformation?.Engine ?? ConfigConstants.DefaultEngine;
             return await LaunchClient(engine, launchInfo, args, cVars);
         }
         catch (Exception e)

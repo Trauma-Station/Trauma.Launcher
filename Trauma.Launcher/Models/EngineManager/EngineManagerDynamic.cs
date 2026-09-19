@@ -44,7 +44,7 @@ public sealed partial class EngineManagerDynamic : IEngineManager
 
         if (!_cfg.EngineInstallations.Lookup(new(id, engineVersion)).HasValue)
         {
-            throw new ArgumentException("We do not have that engine version!");
+            throw new ArgumentException($"Missing engine version {id}:{engineVersion}!");
         }
 
         return Path.Combine(LauncherPaths.DirEngineInstallations, id, $"{engineVersion}.zip");
