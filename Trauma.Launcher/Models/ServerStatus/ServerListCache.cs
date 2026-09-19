@@ -50,7 +50,13 @@ public sealed partial class ServerListCache : ReactiveObject, IServerSource
     /// </summary>
     public void RequestRefresh()
     {
-        _ = RefreshServerList();
+        if (Status == RefreshListStatus.UpdatingMaster)
+            return;
+
+        _refreshCancel?.Cancel();
+        AllServers.Clear();
+        _refreshCancel = new CancellationTokenSource(10000);
+        _ = RefreshServerList(_refreshCancel.Token);
     }
 
     public async Task RefreshServerList()
@@ -148,6 +154,7 @@ public sealed partial class ServerListCache : ReactiveObject, IServerSource
         }
         catch (OperationCanceledException)
         {
+            Status = RefreshListStatus.Error;
         }
         catch (Exception e)
         {

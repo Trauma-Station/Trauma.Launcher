@@ -1,7 +1,14 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
-Encoding=UTF-8
-Version=1.0
-Type=Application
+Categories=Game
+Comment=A multiplayer disaster simulator
 Exec=env ./Trauma.Launcher %u
+Icon=TS14
+Keywords=game;gaming;launcher;multiplayer;ss14
+Name[en_US]=Trauma Station
 Name=Trauma Station
+SingleMainWindow=true
+StartupWMClass=Trauma.Launcher
+Terminal=false
+Type=Application
+Version=1.5

@@ -26,6 +26,13 @@ public sealed partial class HomePageViewModel : MainWindowTabViewModel
         MainWindowViewModel = mainWindowViewModel;
         _cfg = Locator.Current.GetRequiredService<DataManager>();
         _serverListCache = Locator.Current.GetRequiredService<ServerListCache>();
+        _serverListCache.PropertyChanged += (_, args) =>
+        {
+            if (args.PropertyName == nameof(ServerListCache.Status))
+            {
+                this.RaisePropertyChanged(nameof(RefreshEnabled));
+            }
+        };
 
         _cfg.FavoriteServers
             .Connect()
@@ -55,6 +62,8 @@ public sealed partial class HomePageViewModel : MainWindowTabViewModel
 
     public override string Name => LocalizationManager.Instance.GetString("tab-home-title");
     public Control? Control { get; set; }
+
+    public bool RefreshEnabled => _serverListCache.Status != RefreshListStatus.UpdatingMaster;
 
     public async void DirectConnectPressed()
     {
@@ -99,6 +108,9 @@ public sealed partial class HomePageViewModel : MainWindowTabViewModel
 
     public void RefreshPressed()
     {
+        if (!RefreshEnabled)
+            return;
+
         _statusCache.Refresh();
         _serverListCache.RequestRefresh();
     }

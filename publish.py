@@ -118,8 +118,8 @@ def publish_linux(x64_only: bool):
         st = os.stat(dest)
         os.chmod(dest, st.st_mode | stat.S_IEXEC)
 
+    shutil.copyfile("Trauma.Launcher/Assets/icon.ico", "bin/publish/Linux/TS14.ico")
     shutil.make_archive("Trauma.Launcher_Linux", "zip", "bin/publish/Linux")
-
 
 def publish_osx():
     update_netcore_runtime([PLATFORM_MACOS, PLATFORM_MACOS_ARM64])
