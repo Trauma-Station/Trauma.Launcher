@@ -126,7 +126,16 @@ public sealed partial class ServerListCache : ReactiveObject, IServerSource
                 {
                     // Don't add server if it was already provided by another hub with higher priority
                     var maybeNewEntry = new HubServerListEntry(entry.Address, hub.AbsoluteUri, entry.StatusData);
-                    if (!entries.Add(maybeNewEntry))
+                    if (entries.Add(maybeNewEntry))
+                    {
+                        var fave = _dataManager.FavoriteServers.Lookup(entry.Address);
+                        if (fave.HasValue)
+                        {
+                            // update favorite server's name
+                            fave.Value.Name = entry.StatusData.Name;
+                        }
+                    }
+                    else
                     {
                         Log.Verbose("Not adding {Entry} from {ThisHub} because it was already provided by {PreviousHub}",
                             entry.Address,
